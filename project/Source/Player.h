@@ -15,7 +15,6 @@ public:
 private:
 	VECTOR position;
 	int hImage;
-	int picY;
 	VECTOR input;
 	int score;
 	int type;

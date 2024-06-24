@@ -23,16 +23,20 @@ ItemManager::~ItemManager()
 
 void ItemManager::Update()
 {
-	/*if (--timer <= 0) {
-		timer = 120;
-		Item* item = new Item();
-		itemList.emplace_back(item);
-	}*/
 }
 
 void ItemManager::Draw()
 {
 	for (auto& i : itemList) {
 		i->Draw();
+	}
+}
+
+void ItemManager::Create()
+{
+	if (--timer <= 0) {
+		timer = 120;
+		Item* item = new Item();
+		itemList.emplace_back(item);
 	}
 }
