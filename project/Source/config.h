@@ -6,7 +6,7 @@ static const BOOL WINDOW_MODE    = TRUE;
 static const char* WINDOW_NAME   = "ŠøŽæ‚è";
 static const float WINDOW_EXTEND = 1.0f;
 
-static const int WALL_SIZE = 40;
+static const int WALL_SIZE = 20;
 
 static const int COLOR_BLACK  = GetColor(0, 0, 0);
 static const int COLOR_RED    = GetColor(255, 0, 0);
