@@ -4,22 +4,35 @@
 ItemManager::ItemManager()
 {
 	timer = 120;
+
+	itemList.clear();
 	for (int i = 0; i < 10; i++) {
-		Instantiate<Item>();
+		Item* item = new Item();
+		itemList.emplace_back(item);
 	}
 }
 
 ItemManager::~ItemManager()
 {
+	for (auto& i : itemList) {
+		delete i;
+	}
+
+	itemList.clear();
 }
 
 void ItemManager::Update()
 {
-	std::list<Item*> items = SceneManager::CurrentScene()->FindGameObjects<Item>();
-	if (items.size() >= 10)
-		return;
-	if (--timer <= 0) {
+	/*if (--timer <= 0) {
 		timer = 120;
-		Instantiate<Item>();
+		Item* item = new Item();
+		itemList.emplace_back(item);
+	}*/
+}
+
+void ItemManager::Draw()
+{
+	for (auto& i : itemList) {
+		i->Draw();
 	}
 }
