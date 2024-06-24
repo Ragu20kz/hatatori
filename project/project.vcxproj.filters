@@ -71,6 +71,12 @@
     <ClCompile Include="Source\ItemManager.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\territory.cpp">
+      <Filter>PlayScene\territory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\territoryManager.cpp">
+      <Filter>PlayScene\territory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\config.h" />
@@ -156,6 +162,12 @@
     <ClInclude Include="Source\ItemManager.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\territory.h">
+      <Filter>PlayScene\territory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\territoryManager.h">
+      <Filter>PlayScene\territory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
@@ -175,6 +187,9 @@
     </Filter>
     <Filter Include="ImGUI">
       <UniqueIdentifier>{5824ee96-3b23-4d6a-b3ec-6d5327bc27bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\territory">
+      <UniqueIdentifier>{e34b58e2-8a25-4538-9079-7d08267ed19c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
