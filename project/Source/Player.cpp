@@ -10,6 +10,13 @@ Player::Player()
 	input    = VECTOR();
 	score = 0;
 	type = -1;
+
+	speedBuff = 1.0f;
+	weightMax = 10;//‰¼
+	stanTime = 0.0f;
+	stanInvalid = 0;
+	nowStan = false;
+	weight = 0;
 }
 
 Player::~Player()
@@ -18,7 +25,7 @@ Player::~Player()
 
 void Player::Update()
 {
-	position += input * 3.0f;
+	position += input * 3.0f*speedBuff;
 }
 
 void Player::Draw()
