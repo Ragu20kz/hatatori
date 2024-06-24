@@ -2,6 +2,7 @@
 
 PlayerAI::PlayerAI()
 {
+	player = nullptr;
 }
 
 PlayerAI::~PlayerAI()

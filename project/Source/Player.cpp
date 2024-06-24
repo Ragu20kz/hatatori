@@ -3,6 +3,9 @@
 
 Player::Player()
 {
+	position = VECTOR();
+	hImage   = -1;
+	input    = VECTOR();
 	score = 0;
 	type = -1;
 }
@@ -18,7 +21,7 @@ void Player::Update()
 
 void Player::Draw()
 {
-	DrawRectGraph(position.x, position.y, 2, 2, 32, 32, hImage, TRUE);
+	DrawRectGraph((int)position.x, (int)position.y, 2, 2, 32, 32, hImage, TRUE);
 	char s[32];
 	sprintf_s<32>(s, "SCORE %6d", score);
 	int x = 0;

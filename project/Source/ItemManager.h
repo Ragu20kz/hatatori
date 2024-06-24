@@ -12,6 +12,8 @@ public:
 
 	const std::list<Item*>& GetItemList() { return itemList; }
 private:
+	void Create();
+
 	float timer;
 	std::list<Item*> itemList;
 };
