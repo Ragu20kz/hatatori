@@ -6,8 +6,8 @@ Player::Player()
 	position = VECTOR();
 	hImage   = -1;
 	input    = VECTOR();
-	score = 0;
-	type = -1;
+	score    = 0;
+	type     = -1;
 }
 
 Player::~Player()

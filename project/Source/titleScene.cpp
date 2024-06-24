@@ -1,13 +1,7 @@
 #include "titleScene.h"
 #include "../Library/sceneManager.h"
 #include "DebugScreen.h"
-
-int inc(int a)
-{
-	if (a >= 3)
-		return a;
-	return inc(a + 1);
-}
+#include "config.h"
 
 TitleScene::TitleScene()
 {
@@ -26,12 +20,18 @@ void TitleScene::Update()
 	SceneBase::Update();
 }
 
-
 void TitleScene::Draw()
 {
-	int n = inc(0);
-	DrawFormatString(100, 100, GetColor(255, 255, 255), "N=%d", n);
+	const int font = GetFontSize();
+
 	SceneBase::Draw();
-	DrawString(0, 0, "TITLE SCENE", GetColor(255,255,255));
+
 	DrawString(100, 400, "Push [P]Key To Play", GetColor(255, 255, 255));
+
+	SetFontSize(font * 4);
+	std::string title = "ƒ^ƒCƒgƒ‹";
+	int size = GetDrawStringWidth(title.c_str(), (int)title.size());
+	DrawString(SCREEN_WIDTH / 2 - size / 2, SCREEN_HEIGHT / 2, title.c_str(), 0xFFFFFF);
+
+	SetFontSize(font);
 }
