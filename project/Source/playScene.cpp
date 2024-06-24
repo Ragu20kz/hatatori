@@ -16,10 +16,12 @@ PlayScene::PlayScene()
 	for (int i = 0; i < 4; i++) {
 		inst[i] = Instantiate<Player>();
 		inst[i]->SetChara(i);
+		SetDrawOrder(inst[i], 10000);
 	}
 	PlayerAI* ai = Instantiate<PlayerAI>();
 	ai->SetPlayer(inst[0]);
 	Instantiate<ItemManager>();
+	
 }
 
 
