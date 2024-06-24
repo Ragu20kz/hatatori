@@ -50,19 +50,19 @@ void Player::SetChara(int id)
 	switch (id) {
 	case 0:
 		hImage = LoadGraph("data/textures/player1.png");
-		position = VGet(0, 0, 0);
+		position = VGet(WALL_SIZE, WALL_SIZE, 0);
 		break;
 	case 1:
 		hImage = LoadGraph("data/textures/player2.png");
-		position = VGet(SCREEN_WIDTH - 32, 0, 0);
+		position = VGet(SCREEN_WIDTH - 32- WALL_SIZE, WALL_SIZE, 0);
 		break;
 	case 2:
 		hImage = LoadGraph("data/textures/player3.png");
-		position = VGet(0, SCREEN_HEIGHT - 32, 0);
+		position = VGet(WALL_SIZE, SCREEN_HEIGHT - 32- WALL_SIZE, 0);
 		break;
 	case 3:
 		hImage = LoadGraph("data/textures/player4.png");
-		position = VGet(SCREEN_WIDTH - 32, SCREEN_HEIGHT - 32, 0);
+		position = VGet(SCREEN_WIDTH - 32- WALL_SIZE, SCREEN_HEIGHT - 32- WALL_SIZE, 0);
 		break;
 	}
 
