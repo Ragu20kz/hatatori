@@ -11,7 +11,8 @@ public:
 	void Draw()override;
 
 	void SetTerritory(VECTOR _pos,int _num);
-	void ItemCollider();
+	void ItemCollider(); //アイテム乗っている数判定
+	void DebugGUI(); //デバッグ用のGUIを書いとく
 private:
 	std::vector <Territory*> territory;
 };
