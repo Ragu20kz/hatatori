@@ -17,6 +17,7 @@ Player::Player()
 	stanInvalid = 0;
 	nowStan = false;
 	weight = 0;
+	speedBuffItem = 0;
 }
 
 Player::~Player()
@@ -115,4 +116,16 @@ void Player::Input(VECTOR dir)
 {
 	dir.z = 0;
 	input = VNorm(dir);
+}
+
+void Player::SetSpeed()
+{
+	if (weight < weightMax) {
+		speedBuff = 1.0f + (speedBuffItem / 100);
+	}
+	else {
+		float debuff = weight - weightMax;
+		debuff /= 100;
+		speedBuff = 1.0f - debuff;
+	}
 }

@@ -12,6 +12,11 @@ public:
 		return position;
 	}
 	void Input(VECTOR dir);
+
+	/// <summary>
+	/// speedBuffを変更する
+	/// </summary>
+	void SetSpeed();
 private:
 	VECTOR position;
 	int hImage;			
@@ -25,4 +30,5 @@ private:
 	float stanTime;		//スタン時間
 	bool nowStan;		//今スタンしているか、していればtrue
 	int stanInvalid;	//スタン無効回数、複数個保持する可能性があるためとりあえずint
+	int speedBuffItem;	//スピードバフアイテム数
 };
