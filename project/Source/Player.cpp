@@ -26,7 +26,7 @@ Player::~Player()
 
 void Player::Update()
 {
-	//position += input * 3.0f*speedBuff;
+	position += input * 3.0f*speedBuff;
 }
 
 void Player::Draw()
