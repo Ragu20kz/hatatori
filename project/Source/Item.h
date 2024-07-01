@@ -12,6 +12,8 @@ public:
 	VECTOR Position() {
 		return position;
 	}
+
+	void SetImage(int _image) { hImage = _image; }
 private:
 	int hImage;
 	int kind;
