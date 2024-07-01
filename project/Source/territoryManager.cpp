@@ -3,7 +3,7 @@
 
 TerritoryManager::TerritoryManager()
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		Territory*t =  new Territory();
 		territory.emplace_back(t);

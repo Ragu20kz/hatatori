@@ -12,8 +12,8 @@
 PlayScene::PlayScene()
 {
 	TerritoryManager* territory = Instantiate<TerritoryManager>();
-	Player* inst[4];
-	for (int i = 0; i < 4; i++) {
+	Player* inst[PLAYER_NUM];
+	for (int i = 0; i < PLAYER_NUM; i++) {
 		inst[i] = Instantiate<Player>();
 		inst[i]->SetChara(i);
 		SetDrawOrder(inst[i], 10000);

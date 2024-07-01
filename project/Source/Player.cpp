@@ -52,6 +52,12 @@ void Player::Draw()
 		x = SCREEN_WIDTH - 128;
 		y = SCREEN_HEIGHT - 40;
 		break;
+	case 4:
+		x = 0;
+		y = 0;
+		break;
+	default:
+		break;
 	};
 	DrawString(x, y, s, GetColor(255, 255, 255), 0);
 }
@@ -87,6 +93,13 @@ void Player::SetChara(int id)
 		territoyPos = position + VGet(-boxSize, -boxSize, 0);
 		position += VGet(-32, -32, 0);
 		break;
+	case 4:
+		hImage = LoadGraph("data/textures/player5.png");
+		position = VGet(SCREEN_WIDTH - WALL_SIZE*3, SCREEN_HEIGHT - WALL_SIZE, 0);
+		territoyPos = position + VGet(-boxSize, -boxSize, 0);
+		position += VGet(-32, -32, 0);
+		break;
+
 	}
 	TerritoryManager* t = FindGameObject<TerritoryManager>();
 	t->SetTerritory(territoyPos, id);

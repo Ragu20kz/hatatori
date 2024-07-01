@@ -17,3 +17,5 @@ static const int COLOR_PURPLE = GetColor(255, 0, 255);
 static const int COLOR_CYAN   = GetColor(0, 255, 255);
 static const int COLOR_WHITE  = GetColor(255, 255, 255);
 static const int COLOR_GRAY   = GetColor(178, 178, 178);
+
+static const int PLAYER_NUM = 5;
