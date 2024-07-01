@@ -95,12 +95,6 @@ void Player::SetChara(int id)
 		position = VGet(SCREEN_WIDTH - WALL_SIZE * 4, SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
 		territoyPos = position;
 		break;
-	case 4:
-		hImage = LoadGraph("data/textures/player5.png");
-		position = VGet(SCREEN_WIDTH - WALL_SIZE*3, SCREEN_HEIGHT - WALL_SIZE, 0);
-		territoyPos = position + VGet(-boxSize, -boxSize, 0);
-		position += VGet(-32, -32, 0);
-		break;
 
 	}
 	TerritoryManager* t = FindGameObject<TerritoryManager>();
