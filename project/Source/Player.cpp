@@ -105,6 +105,7 @@ void Player::SetChara(int id)
 		territoyPos = position;
 		position.y -= 32;
 		break;
+
 	}
 	TerritoryManager* t = FindGameObject<TerritoryManager>();
 	t->SetTerritory(territoyPos, id);
