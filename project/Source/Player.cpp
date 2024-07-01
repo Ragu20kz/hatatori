@@ -25,7 +25,7 @@ Player::~Player()
 
 void Player::Update()
 {
-	position += input * 3.0f*speedBuff;
+	//position += input * 3.0f*speedBuff;
 }
 
 void Player::Draw()
@@ -52,8 +52,14 @@ void Player::Draw()
 		x = SCREEN_WIDTH - 128;
 		y = SCREEN_HEIGHT - 40;
 		break;
+	case 4:
+		x = 0;
+		y = 0;
+		break;
+	default:
+		break;
 	};
-	DrawString(x, y, s, GetColor(255, 255, 255), 0);
+	//DrawString(x, y, s, GetColor(255, 255, 255), 0);
 }
 
 void Player::SetChara(int id)
@@ -61,31 +67,33 @@ void Player::SetChara(int id)
 	type = id;
 
 	VECTOR territoyPos = VGet(0, 0, 0);
-	int boxSize = 200;
+	int boxSizeX = 150;
+	int boxSizeY = 200;
 
 	switch (id) {
 	case 0:
 		hImage = LoadGraph("data/textures/player1.png");
-		position = VGet(WALL_SIZE, WALL_SIZE, 0);
+		position = VGet(WALL_SIZE, SCREEN_HEIGHT - WALL_SIZE - boxSizeY , 0);
 		territoyPos = position;
 		break;
 	case 1:
 		hImage = LoadGraph("data/textures/player2.png");
-		position = VGet(SCREEN_WIDTH - WALL_SIZE, WALL_SIZE, 0);
-		territoyPos = position + VGet(-boxSize, 0, 0);
-		position += VGet(-32, 0, 0);
+		position = VGet(WALL_SIZE + boxSizeX, SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
+		territoyPos = position;
 		break;
 	case 2:
 		hImage = LoadGraph("data/textures/player3.png");
-		position = VGet(WALL_SIZE, SCREEN_HEIGHT - WALL_SIZE, 0);
-		territoyPos = position + VGet(0, -boxSize, 0);
-		position += VGet(0, -32, 0);
+		position = VGet(WALL_SIZE + boxSizeX * 2, SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
+		territoyPos = position;
 		break;
 	case 3:
 		hImage = LoadGraph("data/textures/player4.png");
-		position = VGet(SCREEN_WIDTH - WALL_SIZE, SCREEN_HEIGHT - WALL_SIZE, 0);
-		territoyPos = position + VGet(-boxSize, -boxSize, 0);
-		position += VGet(-32, -32, 0);
+		position = VGet(WALL_SIZE + boxSizeX * 3, SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
+		territoyPos = position;
+		break;
+	case 4:	hImage = LoadGraph("data/textures/player5.png");
+		position = VGet(SCREEN_WIDTH - WALL_SIZE * 4, SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
+		territoyPos = position;
 		break;
 	}
 	TerritoryManager* t = FindGameObject<TerritoryManager>();
