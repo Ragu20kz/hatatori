@@ -77,6 +77,21 @@
     <ClCompile Include="Source\territoryManager.cpp">
       <Filter>PlayScene\territory</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PlayerAITsukumo.cpp">
+      <Filter>PlayScene\PlayerAITsukumo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerAIHiguti.cpp">
+      <Filter>PlayScene\PlayerAIHiguti</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerAIItou.cpp">
+      <Filter>PlayScene\PlayerAIItou</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerAISyuu.cpp">
+      <Filter>PlayScene\PlayerAISyuu</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerAIOoki.cpp">
+      <Filter>PlayScene\PlayerAIOoki</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\config.h" />
@@ -168,6 +183,21 @@
     <ClInclude Include="Source\territoryManager.h">
       <Filter>PlayScene\territory</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PlayerAITsukumo.h">
+      <Filter>PlayScene\PlayerAITsukumo</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerAIHiguti.h">
+      <Filter>PlayScene\PlayerAIHiguti</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerAIItou.h">
+      <Filter>PlayScene\PlayerAIItou</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerAISyuu.h">
+      <Filter>PlayScene\PlayerAISyuu</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerAIOoki.h">
+      <Filter>PlayScene\PlayerAIOoki</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
@@ -190,6 +220,21 @@
     </Filter>
     <Filter Include="PlayScene\territory">
       <UniqueIdentifier>{e34b58e2-8a25-4538-9079-7d08267ed19c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\PlayerAITsukumo">
+      <UniqueIdentifier>{ac5feab0-38b9-4398-aea5-3880d610aa60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\PlayerAIItou">
+      <UniqueIdentifier>{a8386d49-0021-43e1-82ca-dffc77a60592}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\PlayerAIHiguti">
+      <UniqueIdentifier>{ac76ebe8-eb60-4750-ae45-4d36ec841f2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\PlayerAISyuu">
+      <UniqueIdentifier>{e0dbf681-fd15-4ec4-a8ef-53906df16de9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\PlayerAIOoki">
+      <UniqueIdentifier>{6773983d-46fd-4b7b-b7c8-936a779d0b24}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

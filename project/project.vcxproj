@@ -160,6 +160,11 @@
     <ClInclude Include="Source\ItemManager.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\PlayerAI.h" />
+    <ClInclude Include="Source\PlayerAIHiguti.h" />
+    <ClInclude Include="Source\PlayerAIItou.h" />
+    <ClInclude Include="Source\PlayerAIOoki.h" />
+    <ClInclude Include="Source\PlayerAISyuu.h" />
+    <ClInclude Include="Source\PlayerAITsukumo.h" />
     <ClInclude Include="Source\playScene.h" />
     <ClInclude Include="Source\sceneFactory.h" />
     <ClInclude Include="Source\territory.h" />
@@ -188,6 +193,11 @@
     <ClCompile Include="Source\ItemManager.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\PlayerAI.cpp" />
+    <ClCompile Include="Source\PlayerAIHiguti.cpp" />
+    <ClCompile Include="Source\PlayerAIItou.cpp" />
+    <ClCompile Include="Source\PlayerAIOoki.cpp" />
+    <ClCompile Include="Source\PlayerAISyuu.cpp" />
+    <ClCompile Include="Source\PlayerAITsukumo.cpp" />
     <ClCompile Include="Source\playScene.cpp" />
     <ClCompile Include="Source\sceneFactory.cpp" />
     <ClCompile Include="Source\territory.cpp" />
