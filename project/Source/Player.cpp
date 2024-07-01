@@ -68,8 +68,8 @@ void Player::SetChara(int id)
 	type = id;
 
 	VECTOR territoyPos = VGet(0, 0, 0);
-	int boxSizeX = 150;
-	int boxSizeY = 200;
+	int boxSizeX = TERRITORY_SIZE_X;
+	int boxSizeY = TERRITORY_SIZE_Y;
 
 	switch (id) {
 	case 0:

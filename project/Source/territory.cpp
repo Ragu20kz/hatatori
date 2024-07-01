@@ -1,9 +1,5 @@
 #include "territory.h"
-
-namespace {
-	static const int BOX_SIZE_X = 150;
-	static const int BOX_SIZE_Y = 200;
-}
+#include"config.h"
 
 Territory::Territory()
 {
@@ -24,6 +20,8 @@ void Territory::Update()
 
 void Territory::Draw()
 {
-	DrawBox(positon.x, positon.y, positon.x + BOX_SIZE_X, positon.y + BOX_SIZE_Y, color, true);
+	DrawBox(positon.x, positon.y, positon.x + TERRITORY_SIZE_X, positon.y + TERRITORY_SIZE_Y, color, false);
+
+
 	DrawFormatString(positon.x, positon.y, 0x00ffff, "[%d]:score:%d", number, score);
 }

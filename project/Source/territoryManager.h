@@ -11,6 +11,7 @@ public:
 	void Draw()override;
 
 	void SetTerritory(VECTOR _pos,int _num);
+	void ItemCollider();
 private:
 	std::vector <Territory*> territory;
 };
