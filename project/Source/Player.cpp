@@ -73,27 +73,37 @@ void Player::SetChara(int id)
 	switch (id) {
 	case 0:
 		hImage = LoadGraph("data/textures/player1.png");
-		position = VGet(WALL_SIZE, SCREEN_HEIGHT - WALL_SIZE - boxSizeY , 0);
+		position = VGet(WALL_SIZE, 
+						SCREEN_HEIGHT - WALL_SIZE - boxSizeY , 0);
 		territoyPos = position;
+		position.y -= 32;
 		break;
 	case 1:
 		hImage = LoadGraph("data/textures/player2.png");
-		position = VGet(WALL_SIZE + boxSizeX, SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
+		position = VGet(WALL_SIZE + boxSizeX + 125,
+						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
 		territoyPos = position;
+		position.y -= 32;
 		break;
 	case 2:
 		hImage = LoadGraph("data/textures/player3.png");
-		position = VGet(WALL_SIZE + boxSizeX * 2, SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
+		position = VGet(WALL_SIZE + boxSizeX * 2 + 250,
+						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
 		territoyPos = position;
+		position.y -= 32;
 		break;
 	case 3:
 		hImage = LoadGraph("data/textures/player4.png");
-		position = VGet(WALL_SIZE + boxSizeX * 3, SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
+		position = VGet(SCREEN_WIDTH - (WALL_SIZE + boxSizeX) - 250,
+						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
 		territoyPos = position;
+		position.y -= 32;
 		break;
 	case 4:	hImage = LoadGraph("data/textures/player5.png");
-		position = VGet(SCREEN_WIDTH - WALL_SIZE * 4, SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
+		position = VGet(SCREEN_WIDTH-(WALL_SIZE + boxSizeX), 
+						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
 		territoyPos = position;
+		position.y -= 32;
 		break;
 	}
 	TerritoryManager* t = FindGameObject<TerritoryManager>();
