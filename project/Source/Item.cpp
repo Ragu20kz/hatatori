@@ -68,6 +68,7 @@ void Item::Throw()
 	}
 	else {
 		speed = 0;
+		isThrow = false;
 	}
 
 	if (position.x < WALL_SIZE || position.x + ITEM_SIZE > SCREEN_WIDTH - WALL_SIZE ||

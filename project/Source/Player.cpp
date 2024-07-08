@@ -23,7 +23,7 @@ Player::Player()
 
 	itemList.clear();
 	itemManager = FindGameObject<ItemManager>();
-
+	territoryPos = VECTOR();
 }
 
 Player::~Player()
@@ -99,7 +99,7 @@ void Player::SetChara(int id)
 {
 	type = id;
 
-	VECTOR territoyPos = VGet(0, 0, 0);
+	territoryPos = VGet(0, 0, 0);
 	int boxSizeX = TERRITORY_SIZE_X;
 	int boxSizeY = TERRITORY_SIZE_Y;
 
@@ -108,40 +108,40 @@ void Player::SetChara(int id)
 		hImage = LoadGraph("data/textures/player1.png");
 		position = VGet(WALL_SIZE, 
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY , 0);
-		territoyPos = position;
+		territoryPos = position;
 		position.y -= 32;
 		break;
 	case 1:
 		hImage = LoadGraph("data/textures/player2.png");
 		position = VGet(WALL_SIZE + boxSizeX + 125,
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
-		territoyPos = position;
+		territoryPos = position;
 		position.y -= 32;
 		break;
 	case 2:
 		hImage = LoadGraph("data/textures/player3.png");
 		position = VGet(WALL_SIZE + boxSizeX * 2 + 250,
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
-		territoyPos = position;
+		territoryPos = position;
 		position.y -= 32;
 		break;
 	case 3:
 		hImage = LoadGraph("data/textures/player4.png");
 		position = VGet(SCREEN_WIDTH - (WALL_SIZE + boxSizeX) - 250,
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
-		territoyPos = position;
+		territoryPos = position;
 		position.y -= 32;
 		break;
 	case 4:	hImage = LoadGraph("data/textures/player5.png");
 		position = VGet(SCREEN_WIDTH-(WALL_SIZE + boxSizeX), 
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
-		territoyPos = position;
+		territoryPos = position;
 		position.y -= 32;
 		break;
 
 	}
 	TerritoryManager* t = FindGameObject<TerritoryManager>();
-	territory = t->SetTerritory(territoyPos, id);
+	territory = t->SetTerritory(territoryPos, id);
 }
 
 void Player::Input(VECTOR dir)
@@ -164,7 +164,7 @@ void Player::ItemHit()
 	for (auto& item : itemManager->GetItemList()) {
 		VECTOR posSub = item->Position() - position;
 		//“–‚½‚Á‚Ä‚¢‚È‚¢‚Ì‚Å”ò‚Î‚·
-		if (VSize(posSub) > ILUST_RADIUS * 4) {
+		if (VSize(posSub) > ILUST_RADIUS * 2) {
 			continue;
 		}
 		//’N‚©‚ªŽ‚¿•à‚¢‚Ä‚¢‚é‚È‚ç”ò‚Î‚·
@@ -216,4 +216,12 @@ void Player::ItemScatter()
 		item->SetRandomPosition();
 	}
 	itemList.clear();
+}
+
+void Player::ItemPut()
+{
+	for (auto& item : itemList) {
+		item->SetPosition(territoryPos);
+		item->SetIsHold(false);
+	}
 }
