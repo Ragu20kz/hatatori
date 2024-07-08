@@ -13,6 +13,7 @@ public:
 	const std::list<Item*>& GetItemList() { return itemList; }
 private:
 	void Create();
+	int hImage;
 
 	float timer;
 	std::list<Item*> itemList;

@@ -3,9 +3,9 @@
 
 Item::Item()
 {
-	hImage   = LoadGraph("data/textures/item.png");
+	hImage   = 0;
 	kind     = rand() % 5;
-	position = VGet((float)(rand() % (SCREEN_WIDTH - 32)), (float)(rand() % (SCREEN_HEIGHT - 32)), 0.0f);
+	position = VGet((float)(rand() % (SCREEN_WIDTH - 32)), (float)(rand() % (SCREEN_HEIGHT - WALL_SIZE - 200 - 32)), 0.0f);
 }
 
 Item::~Item()

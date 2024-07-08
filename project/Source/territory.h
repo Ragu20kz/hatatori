@@ -10,4 +10,6 @@ public:
 
 	VECTOR positon;
 	int color;
+	int score;
+	int number;
 };

@@ -13,4 +13,5 @@ public:
 	void Update() override;
 	void Draw() override;
 private:
+	int himage; //‰æ‘œ
 };
