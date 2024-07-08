@@ -19,6 +19,7 @@ public:
 
 	void SetImage(int _image) { hImage = _image; }
 	void SetIsHold(bool _set) { isHold = _set; }
+	void SetPosition(const VECTOR& pos) { position = pos; }
 
 	const bool IsThrow()const { return isThrow; }
 	const bool IsHold()const { return isHold; }

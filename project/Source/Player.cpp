@@ -28,10 +28,6 @@ Player::Player()
 
 Player::~Player()
 {
-	for (auto& i : itemList) {
-		delete i;
-	}
-
 	itemList.clear();
 
 }
@@ -44,6 +40,9 @@ void Player::Update()
 		position += input * 3.0f*speedBuff;
 	}
 	ItemHit();
+	for (auto& item : itemList) {
+		item->SetPosition(position);
+	}
 
 	////////////////////
 	if (CheckHitKey(KEY_INPUT_1)) {
@@ -187,6 +186,7 @@ void Player::ItemHit()
 		//E‚¤ˆ—
 		else {
 			weight += item->GetHeavy();
+			item->SetIsHold(true);
 			itemList.emplace_back(item);
 
 		}
@@ -203,7 +203,7 @@ void Player::ItemThrow()
 	}
 	//“®‚«‚ÍItem‚Åˆ—‚·‚é
 	itemList.front()->SetThrow(VGet(5,0,0));
-
+	itemList.front()->SetIsHold(false);
 
 	itemList.pop_front();
 }

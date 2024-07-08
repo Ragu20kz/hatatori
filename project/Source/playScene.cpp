@@ -7,6 +7,13 @@
 #include "ItemManager.h"
 #include "config.h"
 
+#include "PlayerAIItou.h"
+#include "PlayerAIOoki.h"
+#include "PlayerAIHiguti.h"
+#include "PlayerAITsukumo.h"
+#include "PlayerAISyuu.h"
+
+
 #include"territoryManager.h"
 
 PlayScene::PlayScene()
@@ -20,9 +27,18 @@ PlayScene::PlayScene()
 		inst[i]->SetChara(i);
 		SetDrawOrder(inst[i], 10000);
 	}
-	PlayerAI* ai = Instantiate<PlayerAI>();
-	ai->SetPlayer(inst[0]);
 	
+	PlayerAIHiguti* p1	= Instantiate<PlayerAIHiguti>();
+	PlayerAIOoki* p2	= Instantiate<PlayerAIOoki>();
+	PlayerAITsukumo* p3 = Instantiate<PlayerAITsukumo>();
+	PlayerAISyuu* p4	= Instantiate<PlayerAISyuu>();
+	PlayerAIItou* p5	= Instantiate<PlayerAIItou>();
+	p1->SetPlayer(inst[0]);
+	p2->SetPlayer(inst[1]);
+	p3->SetPlayer(inst[2]);
+	p4->SetPlayer(inst[3]);
+	p5->SetPlayer(inst[4]);
+
 }
 
 PlayScene::~PlayScene()
