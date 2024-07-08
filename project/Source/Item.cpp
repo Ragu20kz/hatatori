@@ -24,3 +24,8 @@ void Item::Draw()
 {
 	DrawRectGraph((int)position.x, (int)position.y, kind * 36 + 2, 2, 32, 32, hImage, TRUE);
 }
+
+void Item::SetRandomPosition()
+{
+	position = VGet((float)(rand() % (SCREEN_WIDTH - 32)), (float)(rand() % (SCREEN_HEIGHT - WALL_SIZE - 200 - 32)), 0.0f);
+}

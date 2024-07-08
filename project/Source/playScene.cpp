@@ -12,6 +12,8 @@
 PlayScene::PlayScene()
 {
 	TerritoryManager* territory = Instantiate<TerritoryManager>();
+	Instantiate<ItemManager>();
+
 	Player* inst[PLAYER_NUM];
 	for (int i = 0; i < PLAYER_NUM; i++) {
 		inst[i] = Instantiate<Player>();
@@ -20,7 +22,6 @@ PlayScene::PlayScene()
 	}
 	PlayerAI* ai = Instantiate<PlayerAI>();
 	ai->SetPlayer(inst[0]);
-	Instantiate<ItemManager>();
 	
 }
 

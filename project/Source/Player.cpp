@@ -21,6 +21,7 @@ Player::Player()
 
 	itemList.clear();
 	itemManager = FindGameObject<ItemManager>();
+
 }
 
 Player::~Player()
@@ -33,11 +34,27 @@ Player::~Player()
 
 }
 
+
 void Player::Update()
 {
 
 	if (!nowStan) {
 		position += input * 3.0f*speedBuff;
+	}
+	ItemHit();
+
+	////////////////////
+	if (CheckHitKey(KEY_INPUT_1)) {
+		nowStan = true;
+	}
+	if (CheckHitKey(KEY_INPUT_2)) {
+		nowStan = false;
+	}
+	if (CheckHitKey(KEY_INPUT_3)) {
+		ItemThrow();
+	}
+	if (CheckHitKey(KEY_INPUT_4)) {
+		ItemScatter();
 	}
 
 
@@ -146,7 +163,7 @@ void Player::ItemHit()
 	for (auto& item : itemManager->GetItemList()) {
 		VECTOR posSub = item->Position() - position;
 		//当たっていないので飛ばす
-		if (VSize(posSub) > ILUST_RADIUS * 2) {
+		if (VSize(posSub) > ILUST_RADIUS * 4) {
 			continue;
 		}
 		//誰かが持ち歩いているなら飛ばす
@@ -179,9 +196,22 @@ void Player::ItemHit()
 void Player::ItemThrow()
 {
 	//手持ちのアイテムを投げる処理
+	if (itemList.size() <= 0) {
+		return;
+	}
+	//動きはItemで処理する
+	itemList.front()->SetIsThrow(true);
+
+
+	itemList.pop_front();
 }
 
 void Player::ItemScatter()
 {
 	//手持ちのアイテム全てなくす
+	for (auto& item : itemList) {
+		item->SetIsHold(false);
+		item->SetRandomPosition();
+	}
+	itemList.clear();
 }

@@ -12,9 +12,14 @@ public:
 	const VECTOR& Position() {
 		return position;
 	}
+	/// <summary>
+	/// アイテムを再配置する
+	/// </summary>
+	void SetRandomPosition(); 
 
 	void SetImage(int _image) { hImage = _image; }
 	void SetIsHold(bool _set) { isHold = _set; }
+	void SetIsThrow(bool _set) { isThrow = _set; }
 
 	const bool IsThrow()const { return isThrow; }
 	const bool IsHold()const { return isHold; }
