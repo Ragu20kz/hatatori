@@ -2,6 +2,8 @@
 #include "../Library/gameObject.h"
 #include "Player.h"
 
+class ItemManager;
+
 class PlayerAIItou : public GameObject {
 public:
 	PlayerAIItou();
@@ -9,5 +11,10 @@ public:
 	void SetPlayer(Player* inst);
 	void Update();
 private:
+	void SearchNearItem();
+
 	Player* player;
+	ItemManager* itemM;
+
+	VECTOR move;
 };
