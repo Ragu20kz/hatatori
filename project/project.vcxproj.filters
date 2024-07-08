@@ -77,20 +77,20 @@
     <ClCompile Include="Source\territoryManager.cpp">
       <Filter>PlayScene\territory</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PlayerAIItou.cpp">
-      <Filter>PlayScene\ItoAI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PlayerAIOoki.cpp">
-      <Filter>PlayScene\OkiAI</Filter>
+    <ClCompile Include="Source\PlayerAITsukumo.cpp">
+      <Filter>PlayScene\PlayerAITsukumo</Filter>
     </ClCompile>
     <ClCompile Include="Source\PlayerAIHiguti.cpp">
-      <Filter>PlayScene\HiguchiAI</Filter>
+      <Filter>PlayScene\PlayerAIHiguti</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerAIItou.cpp">
+      <Filter>PlayScene\PlayerAIItou</Filter>
     </ClCompile>
     <ClCompile Include="Source\PlayerAISyuu.cpp">
-      <Filter>PlayScene\ZhouAI</Filter>
+      <Filter>PlayScene\PlayerAISyuu</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PlayerAITsukumo.cpp">
-      <Filter>PlayScene\TsukumoAI</Filter>
+    <ClCompile Include="Source\PlayerAIOoki.cpp">
+      <Filter>PlayScene\PlayerAIOoki</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -183,20 +183,20 @@
     <ClInclude Include="Source\territoryManager.h">
       <Filter>PlayScene\territory</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PlayerAIItou.h">
-      <Filter>PlayScene\ItoAI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PlayerAIOoki.h">
-      <Filter>PlayScene\OkiAI</Filter>
+    <ClInclude Include="Source\PlayerAITsukumo.h">
+      <Filter>PlayScene\PlayerAITsukumo</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayerAIHiguti.h">
-      <Filter>PlayScene\HiguchiAI</Filter>
+      <Filter>PlayScene\PlayerAIHiguti</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerAIItou.h">
+      <Filter>PlayScene\PlayerAIItou</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayerAISyuu.h">
-      <Filter>PlayScene\ZhouAI</Filter>
+      <Filter>PlayScene\PlayerAISyuu</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PlayerAITsukumo.h">
-      <Filter>PlayScene\TsukumoAI</Filter>
+    <ClInclude Include="Source\PlayerAIOoki.h">
+      <Filter>PlayScene\PlayerAIOoki</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -221,20 +221,20 @@
     <Filter Include="PlayScene\territory">
       <UniqueIdentifier>{e34b58e2-8a25-4538-9079-7d08267ed19c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayScene\ItoAI">
-      <UniqueIdentifier>{07572e09-59f1-4706-b01f-922673f8ab42}</UniqueIdentifier>
+    <Filter Include="PlayScene\PlayerAITsukumo">
+      <UniqueIdentifier>{ac5feab0-38b9-4398-aea5-3880d610aa60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayScene\OkiAI">
-      <UniqueIdentifier>{d2ddba8d-f974-4882-9246-15676b37db56}</UniqueIdentifier>
+    <Filter Include="PlayScene\PlayerAIItou">
+      <UniqueIdentifier>{a8386d49-0021-43e1-82ca-dffc77a60592}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayScene\HiguchiAI">
-      <UniqueIdentifier>{0018305d-8592-4bd1-883a-1cba565a99ec}</UniqueIdentifier>
+    <Filter Include="PlayScene\PlayerAIHiguti">
+      <UniqueIdentifier>{ac76ebe8-eb60-4750-ae45-4d36ec841f2e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayScene\TsukumoAI">
-      <UniqueIdentifier>{bf4c44a9-8dc5-4d53-ad71-a8d3225fc46d}</UniqueIdentifier>
+    <Filter Include="PlayScene\PlayerAISyuu">
+      <UniqueIdentifier>{e0dbf681-fd15-4ec4-a8ef-53906df16de9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayScene\ZhouAI">
-      <UniqueIdentifier>{3f1002da-24e6-4167-a97e-68d01eccac8d}</UniqueIdentifier>
+    <Filter Include="PlayScene\PlayerAIOoki">
+      <UniqueIdentifier>{6773983d-46fd-4b7b-b7c8-936a779d0b24}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
