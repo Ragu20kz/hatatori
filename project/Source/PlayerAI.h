@@ -33,5 +33,7 @@ private:
 	void BackUpdate();
 	void ThrowUpdate();
 
+	void Navigation();
+
 	void CloseItem();
 };

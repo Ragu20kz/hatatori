@@ -24,6 +24,7 @@ void Territory::Draw()
 	SetDrawBlendMode(DX_BLENDGRAPHTYPE_ALPHA, 100);
 	DrawBox(positon.x, positon.y, positon.x + TERRITORY_SIZE_X, positon.y + TERRITORY_SIZE_Y, color, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
 	DrawFormatString(positon.x, positon.y, 0x00ffff, "[%d]:score:%d", number, score);
 	DrawFormatString(positon.x, positon.y + 30, 0x00ffff, "[%d]:èäéùêî:%d", number, haveItem);
 }
