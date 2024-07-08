@@ -7,6 +7,8 @@ PlayerAI::PlayerAI()
 	player = nullptr;
 	item   = nullptr;
 
+	info = PLAYER_INFO::DEFAULT;
+
 	nextPos = VECTOR();
 }
 
@@ -27,8 +29,6 @@ void PlayerAI::Start()
 void PlayerAI::Update()
 {
 	
-
-
 	//player->Input(VGet(1, 0, 0));
 }
 

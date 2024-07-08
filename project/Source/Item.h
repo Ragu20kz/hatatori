@@ -17,6 +17,13 @@ public:
 
 	void SetThrow(VECTOR _vec);
 	void Throw();
+
+	void SetHold(bool _set) { isHold = _set; }
+	bool IsHold() { return isHold; }
+
+	bool IsThrow() { return isThrow; }
+
+	int GetScore() { return score; }
 private:
 	int hImage;
 	int kind;
