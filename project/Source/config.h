@@ -22,3 +22,5 @@ static const int PLAYER_NUM = 5;
 
 static const int TERRITORY_SIZE_X = 150;
 static const int TERRITORY_SIZE_Y = 200;
+
+static const int ILUST_RADIUS = 38;

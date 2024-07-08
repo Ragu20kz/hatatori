@@ -2,6 +2,8 @@
 #include "config.h"
 
 #include"territoryManager.h"
+#include "ItemManager.h"
+#include "Item.h"
 
 Player::Player()
 {
@@ -14,19 +16,31 @@ Player::Player()
 	speedBuff = 1.0f;
 	weightMax = 10;//仮
 	stanTime = 0.0f;
-	stanInvalid = 0;
 	nowStan = false;
 	weight = 0;
-	speedBuffItem = 0;
+
+	itemList.clear();
+	itemManager = FindGameObject<ItemManager>();
 }
 
 Player::~Player()
 {
+	for (auto& i : itemList) {
+		delete i;
+	}
+
+	itemList.clear();
+
 }
 
 void Player::Update()
 {
-	position += input * 3.0f*speedBuff;
+
+	if (!nowStan) {
+		position += input * 3.0f*speedBuff;
+	}
+
+
 }
 
 void Player::Draw()
@@ -120,12 +134,54 @@ void Player::Input(VECTOR dir)
 
 void Player::SetSpeed()
 {
-	if (weight < weightMax) {
-		speedBuff = 1.0f + (speedBuffItem / 100);
-	}
-	else {
+	if (weight > weightMax) {
 		float debuff = weight - weightMax;
 		debuff /= 100;
 		speedBuff = 1.0f - debuff;
 	}
+}
+
+void Player::ItemHit()
+{
+	for (auto& item : itemManager->GetItemList()) {
+		VECTOR posSub = item->Position() - position;
+		//当たっていないので飛ばす
+		if (VSize(posSub) > ILUST_RADIUS * 2) {
+			continue;
+		}
+		//誰かが持ち歩いているなら飛ばす
+		if (item->IsHold()) {
+			continue;
+		}
+		//スタン中は飛ばす
+		if (nowStan) {
+			continue;
+		}
+
+		//アイテムに当たったら
+		//投げられているアイテムなら
+		//スタンする処理
+		if (item->IsThrow()) {
+			nowStan = true;
+			ItemScatter();
+		}
+		//拾う処理
+		else {
+			weight += item->GetHeavy();
+			itemList.emplace_back(item);
+
+		}
+	}
+
+
+}
+
+void Player::ItemThrow()
+{
+	//手持ちのアイテムを投げる処理
+}
+
+void Player::ItemScatter()
+{
+	//手持ちのアイテム全てなくす
 }

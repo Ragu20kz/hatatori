@@ -14,6 +14,13 @@ public:
 	}
 
 	void SetImage(int _image) { hImage = _image; }
+	void SetIsHold(bool _set) { isHold = _set; }
+
+	const bool IsThrow()const { return isThrow; }
+	const bool IsHold()const { return isHold; }
+	const int GetHeavy()const { return heavy; }
+	const int GetScore()const { return score; }
+
 private:
 	int hImage;
 	int kind;
