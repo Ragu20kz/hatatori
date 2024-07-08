@@ -15,4 +15,7 @@ private:
 	Player* player;
 	ItemManager* item;
 
+	VECTOR nextPos;
+
+	void CloseItem();
 };
