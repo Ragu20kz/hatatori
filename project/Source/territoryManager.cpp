@@ -65,7 +65,6 @@ void TerritoryManager::ItemCollider()
 	ItemManager* item = FindGameObject<ItemManager>();
 	item->GetItemList();
 	int score = 0;
-
 	for (int i = 0; i < territory.size(); i++) {
 		VECTOR boxPos = territory[i]->positon;
 		for (auto it : item->GetItemList()) {
