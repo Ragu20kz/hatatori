@@ -7,6 +7,8 @@ PlayerAI::PlayerAI()
 	player = nullptr;
 	item   = nullptr;
 
+	info = PLAYER_INFO::DEFAULT;
+
 	nextPos = VECTOR();
 }
 
@@ -26,10 +28,51 @@ void PlayerAI::Start()
 
 void PlayerAI::Update()
 {
-	
+	switch (info)
+	{
+	case PLAYER_INFO::DEFAULT:
+		DefaultUpdate();
+		break;
+	case PLAYER_INFO::FILDE_ITEM:
+		Filde_ItemUpdate();
+		break;
+	case PLAYER_INFO::TERRITOTY_ITEM:
+		Territoty_ItemUpdate();
+		break;
+	case PLAYER_INFO::BACK:
+		BackUpdate();
+		break;
+	case PLAYER_INFO::THROW:
+		ThrowUpdate();
+		break;
+	}
+}
 
+void PlayerAI::DefaultUpdate()
+{
+	//敵が持っているアイテム数、scoreを基準に選択する
+	//FILDE_ITEMorTERRITOTY_ITEMに入る
+}
 
-	//player->Input(VGet(1, 0, 0));
+void PlayerAI::Filde_ItemUpdate()
+{
+	//BACKに入る
+}
+
+void PlayerAI::Territoty_ItemUpdate()
+{
+	//BACKに入る
+}
+
+void PlayerAI::BackUpdate()
+{
+	//DEFAULTに入る
+}
+
+void PlayerAI::ThrowUpdate()
+{
+	//アイテムがあればBACKに入る
+	//なければDEFAULTに入る
 }
 
 void PlayerAI::CloseItem()
