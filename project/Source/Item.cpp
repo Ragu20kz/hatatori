@@ -44,6 +44,7 @@ void Item::Draw()
 float startTime = 0;
 float endTime = 0;
 float startPower = 0;
+static const int ITEM_SIZE = 32;
 
 void Item::SetThrow(VECTOR _vec)
 {
