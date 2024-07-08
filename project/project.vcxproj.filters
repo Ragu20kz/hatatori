@@ -77,6 +77,21 @@
     <ClCompile Include="Source\territoryManager.cpp">
       <Filter>PlayScene\territory</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PlayerAIItou.cpp">
+      <Filter>PlayScene\ItoAI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerAIOoki.cpp">
+      <Filter>PlayScene\OkiAI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerAIHiguti.cpp">
+      <Filter>PlayScene\HiguchiAI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerAISyuu.cpp">
+      <Filter>PlayScene\ZhouAI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerAITsukumo.cpp">
+      <Filter>PlayScene\TsukumoAI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\config.h" />
@@ -168,6 +183,21 @@
     <ClInclude Include="Source\territoryManager.h">
       <Filter>PlayScene\territory</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PlayerAIItou.h">
+      <Filter>PlayScene\ItoAI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerAIOoki.h">
+      <Filter>PlayScene\OkiAI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerAIHiguti.h">
+      <Filter>PlayScene\HiguchiAI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerAISyuu.h">
+      <Filter>PlayScene\ZhouAI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerAITsukumo.h">
+      <Filter>PlayScene\TsukumoAI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
@@ -190,6 +220,21 @@
     </Filter>
     <Filter Include="PlayScene\territory">
       <UniqueIdentifier>{e34b58e2-8a25-4538-9079-7d08267ed19c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\ItoAI">
+      <UniqueIdentifier>{07572e09-59f1-4706-b01f-922673f8ab42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\OkiAI">
+      <UniqueIdentifier>{d2ddba8d-f974-4882-9246-15676b37db56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\HiguchiAI">
+      <UniqueIdentifier>{0018305d-8592-4bd1-883a-1cba565a99ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\TsukumoAI">
+      <UniqueIdentifier>{bf4c44a9-8dc5-4d53-ad71-a8d3225fc46d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\ZhouAI">
+      <UniqueIdentifier>{3f1002da-24e6-4167-a97e-68d01eccac8d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
