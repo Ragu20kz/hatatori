@@ -53,6 +53,7 @@ void Item::SetThrow(VECTOR _vec)
 	startPower = VSize(vector);
 	startTime = 0;
 	endTime = 5.0f;
+	isThrow = true;
 }
 
 void Item::Throw()
@@ -79,4 +80,9 @@ void Item::Throw()
 
 	position.x += cos(atan2f(vector.y, vector.x)) * speed;
 	position.y += sin(atan2f(vector.y, vector.x)) * speed;
+}
+
+void Item::SetRandomPosition()
+{
+	position = VGet((float)(rand() % (SCREEN_WIDTH - 32)), (float)(rand() % (SCREEN_HEIGHT - WALL_SIZE - 200 - 32)), 0.0f);
 }

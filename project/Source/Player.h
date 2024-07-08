@@ -1,6 +1,8 @@
 #pragma once
 #include "../Library/gameObject.h"
 
+class ItemManager;
+class Item;
 class Territory;
 
 class Player : public GameObject {
@@ -20,9 +22,27 @@ public:
 	/// </summary>
 	void SetSpeed();
 
+	/// <summary>
+	/// アイテムにあたった時の処理
+	/// </summary>
+	void ItemHit();
+
+	/// <summary>
+	/// アイテムを投げる処理
+	/// </summary>
+	void ItemThrow();
+
+	/// <summary>
+	/// アイテムを散らばらせる処理
+	/// </summary>
+	void ItemScatter();
+
 	Territory* GetTerritory() { return territory; }
 private:
 	Territory* territory;
+	ItemManager* itemManager;
+	std::list<Item*> itemList;
+
 
 	VECTOR position;
 	int hImage;			
@@ -35,6 +55,4 @@ private:
 	int weight;			//現在の重さ
 	float stanTime;		//スタン時間
 	bool nowStan;		//今スタンしているか、していればtrue
-	int stanInvalid;	//スタン無効回数、複数個保持する可能性があるためとりあえずint
-	int speedBuffItem;	//スピードバフアイテム数
 };
