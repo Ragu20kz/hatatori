@@ -12,7 +12,7 @@ Item::~Item()
 {
 }
 
-void Item::Create(int type, VECTOR pos)
+void Item::Create(int type, const VECTOR& pos)
 {
 }
 

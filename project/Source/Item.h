@@ -6,10 +6,10 @@ class Item : public GameObject
 public:
 	Item();
 	~Item();
-	void Create(int type, VECTOR pos);
+	void Create(int type, const VECTOR& pos);
 	void Update();
 	void Draw();
-	VECTOR Position() {
+	const VECTOR& Position() {
 		return position;
 	}
 
