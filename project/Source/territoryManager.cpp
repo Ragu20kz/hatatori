@@ -32,6 +32,8 @@ void TerritoryManager::Draw()
 	for (int i = 0; i < territory.size(); i++){
 		territory[i]->Draw();
 	}
+
+	DrawFormatString(0, 50, 0xffff00, "[2]score:%d å¬êî:%d", GetScore(2), GetItem(2));
 }
 
 Territory* TerritoryManager::SetTerritory(const VECTOR& _pos, const int& _num)
