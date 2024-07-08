@@ -12,9 +12,13 @@ public:
 	void Update() override;
 	void Draw() override;
 	void SetChara(int id);
-	VECTOR Position() {
+	const VECTOR& Position() {
 		return position;
 	}
+	const VECTOR& TerritoryPos() {
+		return territoryPos;
+	}
+
 	void Input(VECTOR dir);
 
 	/// <summary>
@@ -37,13 +41,18 @@ public:
 	/// </summary>
 	void ItemScatter();
 
+	/// <summary>
+	/// アイテムを置く処理
+	/// </summary>
+	void ItemPut();
+
 	Territory* GetTerritory() { return territory; }
 private:
 	Territory* territory;
 	ItemManager* itemManager;
 	std::list<Item*> itemList;
 
-
+	VECTOR territoryPos;
 	VECTOR position;
 	int hImage;			
 	VECTOR input;
