@@ -11,6 +11,8 @@ public:
 	void Draw() override;
 
 	const std::list<Item*>& GetItemList() { return itemList; }
+
+	Item* GetCloseItem(const VECTOR& _pos);
 private:
 	void Create();
 	int hImage;
