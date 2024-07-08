@@ -4,6 +4,14 @@
 
 class ItemManager;
 
+enum class PLAYER_INFO {
+	DEFAULT = 0,
+	FILDE_ITEM,
+	TERRITOTY_ITEM,
+	BACK,
+	THROW,
+};
+
 class PlayerAI : public GameObject {
 public:
 	PlayerAI();
@@ -14,6 +22,8 @@ public:
 private:
 	Player* player;
 	ItemManager* item;
+
+	PLAYER_INFO info;
 
 	VECTOR nextPos;
 
