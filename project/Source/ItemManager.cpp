@@ -30,6 +30,9 @@ ItemManager::~ItemManager()
 
 void ItemManager::Update()
 {
+	for (auto& i : itemList) {
+		i->Update();
+	}
 }
 
 void ItemManager::Draw()

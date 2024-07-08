@@ -7,6 +7,8 @@
 
 Player::Player()
 {
+	territory = nullptr;
+
 	position = VECTOR();
 	hImage   = -1;
 	input    = VECTOR();
@@ -140,7 +142,7 @@ void Player::SetChara(int id)
 
 	}
 	TerritoryManager* t = FindGameObject<TerritoryManager>();
-	t->SetTerritory(territoyPos, id);
+	territory = t->SetTerritory(territoyPos, id);
 }
 
 void Player::Input(VECTOR dir)
@@ -200,7 +202,7 @@ void Player::ItemThrow()
 		return;
 	}
 	//“®‚«‚ÍItem‚Åˆ—‚·‚é
-	itemList.front()->SetIsThrow(true);
+	itemList.front()->SetThrow(VGet(5,0,0));
 
 
 	itemList.pop_front();

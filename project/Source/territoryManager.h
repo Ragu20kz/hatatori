@@ -10,7 +10,7 @@ public:
 	void Update()override;
 	void Draw()override;
 
-	void SetTerritory(VECTOR _pos,int _num);
+	Territory* SetTerritory(const VECTOR& _pos, const int& _num);
 	void ItemCollider(); //アイテム乗っている数判定
 	void DebugGUI(); //デバッグ用のGUIを書いとく
 private:

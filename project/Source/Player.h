@@ -3,6 +3,7 @@
 
 class ItemManager;
 class Item;
+class Territory;
 
 class Player : public GameObject {
 public:
@@ -36,9 +37,12 @@ public:
 	/// </summary>
 	void ItemScatter();
 
+	Territory* GetTerritory() { return territory; }
 private:
+	Territory* territory;
 	ItemManager* itemManager;
 	std::list<Item*> itemList;
+
 
 	VECTOR position;
 	int hImage;			

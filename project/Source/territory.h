@@ -8,6 +8,8 @@ public:
 	void Update()override;
 	void Draw()override;
 
+	const VECTOR GetConterPos();
+
 	VECTOR positon;
 	int color;
 	int score;

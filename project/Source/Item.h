@@ -19,13 +19,15 @@ public:
 
 	void SetImage(int _image) { hImage = _image; }
 	void SetIsHold(bool _set) { isHold = _set; }
-	void SetIsThrow(bool _set) { isThrow = _set; }
 
 	const bool IsThrow()const { return isThrow; }
 	const bool IsHold()const { return isHold; }
 	const int GetHeavy()const { return heavy; }
 	const int GetScore()const { return score; }
 
+
+	void SetThrow(VECTOR _vec);
+	void Throw();
 private:
 	int hImage;
 	int kind;
@@ -38,4 +40,7 @@ private:
 
 	int heavy;//èdÇ≥
 	int score;//ì_êî
+
+	VECTOR vector;
+	float speed;
 };
