@@ -36,6 +36,8 @@ public:
 	bool IsThrow() { return isThrow; }
 
 	int GetScore() { return score; }
+
+	int GetKind() { return kind; }
 private:
 	int hImage;
 	int kind;
