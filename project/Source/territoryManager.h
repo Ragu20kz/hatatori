@@ -10,7 +10,7 @@ public:
 	void Update()override;
 	void Draw()override;
 
-	void SetTerritory(VECTOR _pos,int _num);
+	Territory* SetTerritory(const VECTOR& _pos, const int& _num);
 	void ItemCollider();
 private:
 	std::vector <Territory*> territory;

@@ -1,6 +1,8 @@
 #pragma once
 #include "../Library/gameObject.h"
 
+class Territory;
+
 class Player : public GameObject {
 public:
 	Player();
@@ -17,7 +19,11 @@ public:
 	/// speedBuff‚ğ•ÏX‚·‚é
 	/// </summary>
 	void SetSpeed();
+
+	Territory* GetTerritory() { return territory; }
 private:
+	Territory* territory;
+
 	VECTOR position;
 	int hImage;			
 	VECTOR input;

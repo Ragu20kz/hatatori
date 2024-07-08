@@ -29,7 +29,7 @@ void TerritoryManager::Draw()
 	}
 }
 
-void TerritoryManager::SetTerritory(VECTOR _pos, int _num)
+Territory* TerritoryManager::SetTerritory(const VECTOR& _pos, const int& _num)
 {
 	territory[_num]->positon = _pos;
 	territory[_num]->number = _num;
@@ -52,6 +52,7 @@ void TerritoryManager::SetTerritory(VECTOR _pos, int _num)
 		territory[_num]->color = COLOR_YELLOW;
 		break;
 	}
+	return territory[_num];
 }
 
 void TerritoryManager::ItemCollider()

@@ -20,8 +20,13 @@ void Territory::Update()
 
 void Territory::Draw()
 {
+
 	DrawBox(positon.x, positon.y, positon.x + TERRITORY_SIZE_X, positon.y + TERRITORY_SIZE_Y, color, false);
 
-
 	DrawFormatString(positon.x, positon.y, 0x00ffff, "[%d]:score:%d", number, score);
+}
+
+const VECTOR Territory::GetConterPos()
+{
+	return (positon + VGet(TERRITORY_SIZE_X, TERRITORY_SIZE_Y, 0.0f)) / 2;
 }
