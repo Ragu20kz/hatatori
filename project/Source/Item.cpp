@@ -71,10 +71,10 @@ void Item::Throw()
 
 	if (position.x < WALL_SIZE || position.x + ITEM_SIZE > SCREEN_WIDTH - WALL_SIZE ||
 		position.y < WALL_SIZE || position.y + ITEM_SIZE > SCREEN_HEIGHT - WALL_SIZE) {
-		vector = VGet(0, 0, 0) - vector;
+		vector     = VGet(0, 0, 0) - vector;
 		startPower = VSize(vector) /10.0f;
-		startTime = 0;
-		endTime = 1.0f;
+		startTime  = 0;
+		endTime    = 1.0f;
 	}
 
 	position.x += cos(atan2f(vector.y, vector.x)) * speed;
