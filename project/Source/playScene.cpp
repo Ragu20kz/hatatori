@@ -8,6 +8,7 @@
 #include "config.h"
 
 #include"territoryManager.h"
+#include"PlayTime.h"
 
 PlayScene::PlayScene()
 {
@@ -21,8 +22,9 @@ PlayScene::PlayScene()
 	PlayerAI* ai = Instantiate<PlayerAI>();
 	ai->SetPlayer(inst[0]);
 	Instantiate<ItemManager>();
-	
+	Instantiate<PlayTime>();
 }
+
 
 PlayScene::~PlayScene()
 {
