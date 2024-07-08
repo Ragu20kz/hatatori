@@ -15,6 +15,7 @@
 
 
 #include"territoryManager.h"
+#include"PlayTime.h"
 
 PlayScene::PlayScene()
 {

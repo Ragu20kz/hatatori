@@ -21,16 +21,16 @@ void Item::Create(int type, const VECTOR& pos)
 void Item::Update()
 {
 	if (CheckHitKey(KEY_INPUT_UP)) {
-		SetThrow(VGet(0,- 5.0f, 0));
+		SetThrow(VGet(0, -0.1f, 0));
 	}
 	if (CheckHitKey(KEY_INPUT_DOWN)) {
 		SetThrow(VGet(0, 5.0f, 0));
 	}
 	if (CheckHitKey(KEY_INPUT_RIGHT)) {
-		SetThrow(VGet(5.0f, 0, 0));
+		SetThrow(VGet(10.0f, 0, 0));
 	}
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
-		SetThrow(VGet(-5.0f, 0, 0));
+		SetThrow(VGet(-20.0f, 0, 0));
 	}
 	Throw();
 }
@@ -38,14 +38,12 @@ void Item::Update()
 void Item::Draw()
 {
 	DrawRectGraph((int)position.x, (int)position.y, kind * 36 + 2, 2, 32, 32, hImage, TRUE);
-	//DrawFormatString((int)position.x, (int)position.y, 0xff0000, "%.1f", speed);
+	DrawFormatString((int)position.x, (int)position.y, 0xff0000, "%.1f", speed);
 }
 
-//”ò‚Î‚µ—p‰¼’u‚«
-float startTime = 0; 
-float endTime	= 0;
+float startTime = 0;
+float endTime = 0;
 float startPower = 0;
-static const int ITEM_SIZE = 32;
 
 void Item::SetThrow(VECTOR _vec)
 {
@@ -60,9 +58,8 @@ void Item::Throw()
 {
 	float rate = startTime / endTime;
 	startTime += 1.0f / 60.0f;
-	
-	speed = (0 - startPower) * rate + startPower;
 
+	speed = (0 - startPower) * rate + startPower;
 	if (speed > 0) {
 		speed -= 0.1f;
 	}
