@@ -17,6 +17,8 @@ public:
 
 	void SetThrow(VECTOR _vec);
 	void Throw();
+
+	const int const GetKind();
 private:
 	int hImage;
 	int kind;
@@ -30,6 +32,11 @@ private:
 	int heavy;//重さ
 	int score;//点数
 
+	//飛ばし用仮置き
 	VECTOR vector;
 	float speed;
+	float startTime;
+	float endTime;
+	float startPower;
+	static const int ITEM_SIZE = 32;
 };

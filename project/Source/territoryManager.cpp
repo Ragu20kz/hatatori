@@ -24,7 +24,7 @@ void TerritoryManager::Update()
 	for (int i = 0; i < territory.size(); i++) {
 		ItemCollider();
 	}
-	//DebugGUI();
+	DebugGUI();
 }
 
 void TerritoryManager::Draw()
@@ -65,16 +65,20 @@ void TerritoryManager::ItemCollider()
 	ItemManager* item = FindGameObject<ItemManager>();
 	item->GetItemList();
 	int score = 0;
+	int have = 0;
 	for (int i = 0; i < territory.size(); i++) {
 		VECTOR boxPos = territory[i]->positon;
 		for (auto it : item->GetItemList()) {
 			VECTOR itemPos = it->Position();
 			if (itemPos.x < boxPos.x + TERRITORY_SIZE_X && itemPos.x + 32 > boxPos.x &&
 				itemPos.y < boxPos.y + TERRITORY_SIZE_Y && itemPos.y + 32 > boxPos.y) {
-				score += 1;
+				score += 100 * it->GetKind();
+				have += 1;
 			}
 		}
 		territory[i]->score = score;
+		territory[i]->haveItem = have;
+		have = 0;
 		score = 0;
 	}
 }
@@ -89,4 +93,20 @@ void TerritoryManager::DebugGUI()
 		ImGui::SliderFloat(num.c_str(), &territory[i]->positon.y, 0, 720);
 	}
 	ImGui::End();
+}
+
+int const TerritoryManager::GetScore(int _num)
+{
+	if (territory[_num] == nullptr) {
+		return 0;
+	}
+	return territory[_num]->score;
+}
+
+int const TerritoryManager::GetItem(int _num)
+{
+	if (territory[_num] == nullptr) {
+		return 0;
+	}
+	return territory[_num]->haveItem;
 }

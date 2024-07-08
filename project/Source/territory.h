@@ -14,4 +14,5 @@ public:
 	int color;
 	int score;
 	int number;
+	int haveItem;
 };
