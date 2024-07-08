@@ -29,9 +29,6 @@
     <ClCompile Include="Source\timer.cpp">
       <Filter>common</Filter>
     </ClCompile>
-    <ClCompile Include="Library\time.cpp">
-      <Filter>Library</Filter>
-    </ClCompile>
     <ClCompile Include="ImGui\imgui.cpp">
       <Filter>ImGUI</Filter>
     </ClCompile>
@@ -62,9 +59,6 @@
     <ClCompile Include="Source\Player.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Item.cpp">
-      <Filter>PlayScene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\PlayerAI.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
@@ -91,6 +85,15 @@
     </ClCompile>
     <ClCompile Include="Source\PlayerAIOoki.cpp">
       <Filter>PlayScene\PlayerAIOoki</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Item.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\time.cpp">
+      <Filter>Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayTime.cpp">
+      <Filter>PlayScene\time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,9 +131,6 @@
     </ClInclude>
     <ClInclude Include="Source\timer.h">
       <Filter>common</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\time.h">
-      <Filter>Library</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imconfig.h">
       <Filter>ImGUI</Filter>
@@ -198,6 +198,12 @@
     <ClInclude Include="Source\PlayerAIOoki.h">
       <Filter>PlayScene\PlayerAIOoki</Filter>
     </ClInclude>
+    <ClInclude Include="Library\time.h">
+      <Filter>Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayTime.h">
+      <Filter>PlayScene\time</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
@@ -235,6 +241,9 @@
     </Filter>
     <Filter Include="PlayScene\PlayerAIOoki">
       <UniqueIdentifier>{6773983d-46fd-4b7b-b7c8-936a779d0b24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\time">
+      <UniqueIdentifier>{b94a0122-ac2e-4a7c-bbbd-a7e92a614cd9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

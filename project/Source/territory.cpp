@@ -8,6 +8,7 @@ Territory::Territory()
 	score = 0;
 	number = 0;
 	color = 0xff0000;
+	haveItem = 0;
 }
 
 Territory::~Territory()
@@ -24,6 +25,7 @@ void Territory::Draw()
 	DrawBox(positon.x, positon.y, positon.x + TERRITORY_SIZE_X, positon.y + TERRITORY_SIZE_Y, color, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	DrawFormatString(positon.x, positon.y, 0x00ffff, "[%d]:score:%d", number, score);
+	DrawFormatString(positon.x, positon.y + 30, 0x00ffff, "[%d]:èäéùêî:%d", number, haveItem);
 }
 
 const VECTOR Territory::GetConterPos()
