@@ -4,6 +4,8 @@
 #include"ItemManager.h"
 #include"Item.h"
 
+#include "../ImGui/imgui_impl_dxlib.hpp"
+
 TerritoryManager::TerritoryManager()
 {
 	for (int i = 0; i < 5; i++)
@@ -19,12 +21,15 @@ TerritoryManager::~TerritoryManager()
 
 void TerritoryManager::Update()
 {
+	for (int i = 0; i < territory.size(); i++) {
+		ItemCollider();
+	}
+	//DebugGUI();
 }
 
 void TerritoryManager::Draw()
 {
 	for (int i = 0; i < territory.size(); i++){
-		ItemCollider();
 		territory[i]->Draw();
 	}
 }
@@ -73,4 +78,16 @@ void TerritoryManager::ItemCollider()
 		territory[i]->score = score;
 		score = 0;
 	}
+}
+
+void TerritoryManager::DebugGUI()
+{
+	ImGui::Begin("BOX");
+	for (int i = 0; i < territory.size(); i++) {
+		std::string num = std::to_string(i) + ":x";
+		ImGui::SliderFloat(num.c_str(), &territory[i]->positon.x, 0, 1280);
+		num = std::to_string(i) + ":y";
+		ImGui::SliderFloat(num.c_str(), &territory[i]->positon.y, 0, 720);
+	}
+	ImGui::End();
 }
