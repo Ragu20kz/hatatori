@@ -14,6 +14,9 @@ public:
 	}
 
 	void SetImage(int _image) { hImage = _image; }
+
+	void SetThrow(VECTOR _vec);
+	void Throw();
 private:
 	int hImage;
 	int kind;
@@ -26,4 +29,7 @@ private:
 
 	int heavy;//èdÇ≥
 	int score;//ì_êî
+
+	VECTOR vector;
+	float speed;
 };

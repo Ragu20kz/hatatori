@@ -34,7 +34,7 @@ void TerritoryManager::Draw()
 	}
 }
 
-void TerritoryManager::SetTerritory(VECTOR _pos, int _num)
+Territory* TerritoryManager::SetTerritory(const VECTOR& _pos, const int& _num)
 {
 	territory[_num]->positon = _pos;
 	territory[_num]->number = _num;
@@ -57,6 +57,7 @@ void TerritoryManager::SetTerritory(VECTOR _pos, int _num)
 		territory[_num]->color = COLOR_YELLOW;
 		break;
 	}
+	return territory[_num];
 }
 
 void TerritoryManager::ItemCollider()
@@ -64,7 +65,6 @@ void TerritoryManager::ItemCollider()
 	ItemManager* item = FindGameObject<ItemManager>();
 	item->GetItemList();
 	int score = 0;
-
 	for (int i = 0; i < territory.size(); i++) {
 		VECTOR boxPos = territory[i]->positon;
 		for (auto it : item->GetItemList()) {
