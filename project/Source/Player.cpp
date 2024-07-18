@@ -28,14 +28,15 @@ Player::Player()
 
 Player::~Player()
 {
+	if (hImage > 0) {
+		DeleteGraph(hImage);
+		hImage = -1;
+	}
 	itemList.clear();
-
 }
-
 
 void Player::Update()
 {
-
 	if (!nowStan) {
 		position += input * 3.0f*speedBuff;
 	}
@@ -57,13 +58,12 @@ void Player::Update()
 	if (CheckHitKey(KEY_INPUT_4)) {
 		ItemScatter();
 	}
-
-
 }
 
 void Player::Draw()
 {
-	DrawRectGraph((int)position.x, (int)position.y, 2, 2, 32, 32, hImage, TRUE);
+	const int PLAYER_SIZE = 32;
+	DrawRectGraph((int)position.x, (int)position.y, 2, 2, PLAYER_SIZE, PLAYER_SIZE, hImage, TRUE);
 	char s[32];
 	sprintf_s<32>(s, "SCORE %6d", score);
 	int x = 0;
@@ -108,40 +108,39 @@ void Player::SetChara(int id)
 		hImage = LoadGraph("data/textures/player1.png");
 		position = VGet(WALL_SIZE, 
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY , 0);
-		territoryPos = position;
-		position.y -= 32;
 		break;
 	case 1:
 		hImage = LoadGraph("data/textures/player2.png");
 		position = VGet(WALL_SIZE + boxSizeX + 125,
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
-		territoryPos = position;
-		position.y -= 32;
 		break;
 	case 2:
 		hImage = LoadGraph("data/textures/player3.png");
 		position = VGet(WALL_SIZE + boxSizeX * 2 + 250,
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
-		territoryPos = position;
-		position.y -= 32;
 		break;
 	case 3:
 		hImage = LoadGraph("data/textures/player4.png");
 		position = VGet(SCREEN_WIDTH - (WALL_SIZE + boxSizeX) - 250,
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
-		territoryPos = position;
-		position.y -= 32;
 		break;
 	case 4:	hImage = LoadGraph("data/textures/player5.png");
-		position = VGet(SCREEN_WIDTH-(WALL_SIZE + boxSizeX), 
+		position = VGet(SCREEN_WIDTH -(WALL_SIZE + boxSizeX), 
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
-		territoryPos = position;
-		position.y -= 32;
 		break;
 
 	}
+	territoryPos  = position;
+	position.y   -= 32;
+
 	TerritoryManager* t = FindGameObject<TerritoryManager>();
-	territory = t->SetTerritory(territoryPos, id);
+	territory           = t->SetTerritory(territoryPos, id);
+}
+
+const VECTOR Player::GetCenterPos()
+{
+	const int PLAYER_SIZE = 32;
+	return position + VGet((float)(PLAYER_SIZE / 2), (float)(PLAYER_SIZE / 2), 0);
 }
 
 void Player::Input(VECTOR dir)
@@ -162,9 +161,9 @@ void Player::SetSpeed()
 void Player::ItemHit()
 {
 	for (auto& item : itemManager->GetItemList()) {
-		VECTOR posSub = item->Position() - position;
+		VECTOR posSub = item->GetCenterPos() - position;
 		//“–‚½‚Á‚Ä‚¢‚È‚¢‚Ì‚Å”ò‚Î‚·
-		if (VSize(posSub) > ILUST_RADIUS * 2) {
+		if (VSize(posSub) > ILUST_RADIUS) {
 			continue;
 		}
 		//’N‚©‚ªŽ‚¿•à‚¢‚Ä‚¢‚é‚È‚ç”ò‚Î‚·
@@ -188,11 +187,8 @@ void Player::ItemHit()
 			weight += item->GetHeavy();
 			item->SetIsHold(true);
 			itemList.emplace_back(item);
-
 		}
 	}
-
-
 }
 
 void Player::ItemThrow()
@@ -224,4 +220,19 @@ void Player::ItemPut()
 		item->SetPosition(territoryPos);
 		item->SetIsHold(false);
 	}
+	itemList.clear();
+}
+
+void Player::RandItemPut()
+{
+	const int RAND_NUM_MAX = 20;
+
+	for (auto& item : itemList) {
+		VECTOR randPos = position + VGet(
+			rand() % RAND_NUM_MAX - (RAND_NUM_MAX / 2), 
+			rand() % RAND_NUM_MAX - (RAND_NUM_MAX / 2), 0.0f);
+		item->SetPosition(randPos);
+		item->SetIsHold(false);
+	}
+	itemList.clear();
 }

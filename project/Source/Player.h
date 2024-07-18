@@ -15,6 +15,9 @@ public:
 	const VECTOR& Position() {
 		return position;
 	}
+
+	const VECTOR GetCenterPos();
+
 	const VECTOR& TerritoryPos() {
 		return territoryPos;
 	}
@@ -45,6 +48,11 @@ public:
 	/// アイテムを置く処理
 	/// </summary>
 	void ItemPut();
+
+	/// <summary>
+	/// アイテムを置く処理
+	/// </summary>
+	void RandItemPut();
 
 	Territory* GetTerritory() { return territory; }
 private:

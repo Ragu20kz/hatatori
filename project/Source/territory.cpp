@@ -5,10 +5,10 @@ Territory::Territory()
 {
 	positon.x = 0;
 	positon.y = 0;
-	score = 0;
-	number = 0;
-	color = 0xff0000;
-	haveItem = 0;
+	score     = 0;
+	number    = 0;
+	color     = 0xff0000;
+	haveItem  = 0;
 }
 
 Territory::~Territory()
@@ -31,5 +31,5 @@ void Territory::Draw()
 
 const VECTOR Territory::GetConterPos()
 {
-	return (positon + VGet(TERRITORY_SIZE_X, TERRITORY_SIZE_Y, 0.0f)) / 2;
+	return (positon + VGet((float)(TERRITORY_SIZE_X / 2), (float)(TERRITORY_SIZE_Y / 2), 0.0f));
 }
