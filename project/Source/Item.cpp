@@ -14,6 +14,10 @@ Item::Item()
 
 	isThrow = false;
 
+	isTerritory = false;
+
+	havPlayer = nullptr;
+
 	heavy = 0;
 	score = 1;
 }
@@ -28,7 +32,7 @@ void Item::Create(int type, const VECTOR& pos)
 
 void Item::Update()
 {
-	if (CheckHitKey(KEY_INPUT_UP)) {
+	/*if (CheckHitKey(KEY_INPUT_UP)) {
 		SetThrow(VGet(0, -0.1f, 0));
 	}
 	if (CheckHitKey(KEY_INPUT_DOWN)) {
@@ -39,7 +43,7 @@ void Item::Update()
 	}
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
 		SetThrow(VGet(-20.0f, 0, 0));
-	}
+	}*/
 	Throw();
 }
 
@@ -57,15 +61,14 @@ const VECTOR Item::GetCenterPos()
 float startTime = 0;
 float endTime = 0;
 float startPower = 0;
-static const int ITEM_SIZE = 32;
 
 void Item::SetThrow(VECTOR _vec)
 {
-	vector = _vec;
+	vector     = _vec;
 	startPower = VSize(vector);
-	startTime = 0;
-	endTime = 5.0f;
-	isThrow = true;
+	startTime  = 0;
+	endTime    = 5.0f;
+	isThrow    = true;
 }
 
 void Item::Throw()

@@ -1,6 +1,8 @@
 #pragma once
 #include"..//Library/gameObject.h"
 
+class Item;
+
 class Territory :public GameObject{
 public:
 	Territory();
@@ -10,9 +12,14 @@ public:
 
 	const VECTOR GetConterPos();
 
+	const std::list<Item*>& GetItemList() { return itemList; }
+	void AddItemList(Item* _item);
+	void ResetItemList();
+	
 	VECTOR positon;
 	int color;
 	int score;
 	int number;
-	int haveItem;
+private:
+	std::list<Item*> itemList;
 };

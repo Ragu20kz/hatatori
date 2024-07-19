@@ -61,6 +61,29 @@ Item* ItemManager::GetCloseItem(const VECTOR& _pos)
 	return selectItem;
 }
 
+Item* ItemManager::GetFieldCloseItem(const VECTOR& _pos)
+{
+	Item* selectItem = itemList.front(); //list‚Ì“ª‚ðŽæ“¾
+	auto itr = itemList.begin();
+	float lenge = VSquareSize(selectItem->Position() - _pos);
+
+	for (itr++; itr != itemList.end(); itr++) {
+		Item* nowItem = (*itr);
+		if (nowItem->IsHold() || nowItem->IsTerritory()) {
+			continue;
+		}
+
+		float len = VSquareSize(nowItem->Position() - _pos);
+		//‹——£”äŠr
+		if (lenge > len) {
+			selectItem = nowItem;
+			lenge = len;
+		}
+	}
+	//ˆê”Ô‹ß‚¢ƒAƒCƒeƒ€
+	return selectItem;
+}
+
 void ItemManager::Create()
 {
 	if (--timer <= 0) {

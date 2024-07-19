@@ -5,8 +5,9 @@
 
 PlayerAIOoki::PlayerAIOoki()
 {
-	player = nullptr;
-	item = nullptr;
+	player     = nullptr;
+	item       = nullptr;
+	targetItem = nullptr;
 
 	info = PLAYER_INFO::DEFAULT;
 
@@ -53,7 +54,11 @@ void PlayerAIOoki::DefaultUpdate()
 {
 	//敵が持っているアイテム数、scoreを基準に選択する
 	//FILDE_ITEMorTERRITOTY_ITEMに入る
+	targetItem = nullptr;
+	targetItem = item->GetCloseItem(player->Position());
+	nextPos    = targetItem->Position();
 
+	info = PLAYER_INFO::FILDE_ITEM;
 	//
 }
 
@@ -62,6 +67,8 @@ void PlayerAIOoki::Filde_ItemUpdate()
 	Navigation();
 	//アイテムを取ったら
 	//DEFAULTに入る
+	targetItem->GetHavPlayer();
+
 
 	//最大数持っていたら
 	//BACKに入る
