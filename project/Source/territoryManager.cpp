@@ -65,23 +65,26 @@ Territory* TerritoryManager::SetTerritory(const VECTOR& _pos, const int& _num)
 void TerritoryManager::ItemCollider()
 {
 	ItemManager* item = FindGameObject<ItemManager>();
-	item->GetItemList();
-	int score = 0;
-	int have = 0;
+
 	for (int i = 0; i < territory.size(); i++) {
-		VECTOR boxPos = territory[i]->positon;
-		for (auto it : item->GetItemList()) {
+		territory[i]->score    = 0;
+		territory[i]->haveItem = 0;
+	}
+
+	for (auto it : item->GetItemList()) {
+		for (int i = 0; i < territory.size(); i++) {
+			VECTOR boxPos  = territory[i]->positon;
 			VECTOR itemPos = it->Position();
-			if (itemPos.x < boxPos.x + TERRITORY_SIZE_X && itemPos.x + 32 > boxPos.x &&
-				itemPos.y < boxPos.y + TERRITORY_SIZE_Y && itemPos.y + 32 > boxPos.y) {
-				score += 100 * it->GetKind();
-				have += 1;
+			if (itemPos.x < boxPos.x + TERRITORY_SIZE_X && itemPos.x + ITEM_SIZE > boxPos.x &&
+				itemPos.y < boxPos.y + TERRITORY_SIZE_Y && itemPos.y + ITEM_SIZE > boxPos.y) {
+				territory[i]->score    += 100 * it->GetKind();
+				territory[i]->haveItem += 1;
+				it->SetTerritory(true);
+				break;
 			}
+			else
+				it->SetTerritory(false);
 		}
-		territory[i]->score = score;
-		territory[i]->haveItem = have;
-		have = 0;
-		score = 0;
 	}
 }
 

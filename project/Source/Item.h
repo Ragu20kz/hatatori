@@ -1,6 +1,10 @@
 #pragma once
 #include "../Library/gameObject.h"
 
+namespace {
+	static const int ITEM_SIZE = 32;
+}
+
 class Item : public GameObject
 {
 public:

@@ -14,6 +14,8 @@ Item::Item()
 
 	isThrow = false;
 
+	isTerritory = false;
+
 	heavy = 0;
 	score = 1;
 }
@@ -57,15 +59,14 @@ const VECTOR Item::GetCenterPos()
 float startTime = 0;
 float endTime = 0;
 float startPower = 0;
-static const int ITEM_SIZE = 32;
 
 void Item::SetThrow(VECTOR _vec)
 {
-	vector = _vec;
+	vector     = _vec;
 	startPower = VSize(vector);
-	startTime = 0;
-	endTime = 5.0f;
-	isThrow = true;
+	startTime  = 0;
+	endTime    = 5.0f;
+	isThrow    = true;
 }
 
 void Item::Throw()

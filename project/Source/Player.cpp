@@ -2,8 +2,13 @@
 #include "config.h"
 
 #include"territoryManager.h"
+#include "territory.h"
 #include "ItemManager.h"
 #include "Item.h"
+
+namespace {
+	static const int PLAYER_SIZE = 32;
+}
 
 Player::Player()
 {
@@ -38,11 +43,12 @@ Player::~Player()
 void Player::Update()
 {
 	if (!nowStan) {
-		position += input * 3.0f*speedBuff;
+		position += input * 3.0f * speedBuff;
 	}
 	ItemHit();
+	VECTOR v = position + (input * -1.0f * ITEM_SIZE);
 	for (auto& item : itemList) {
-		item->SetPosition(position);
+		item->SetPosition(v);
 	}
 
 	////////////////////
@@ -62,7 +68,6 @@ void Player::Update()
 
 void Player::Draw()
 {
-	const int PLAYER_SIZE = 32;
 	DrawRectGraph((int)position.x, (int)position.y, 2, 2, PLAYER_SIZE, PLAYER_SIZE, hImage, TRUE);
 	char s[32];
 	sprintf_s<32>(s, "SCORE %6d", score);
@@ -139,7 +144,6 @@ void Player::SetChara(int id)
 
 const VECTOR Player::GetCenterPos()
 {
-	const int PLAYER_SIZE = 32;
 	return position + VGet((float)(PLAYER_SIZE / 2), (float)(PLAYER_SIZE / 2), 0);
 }
 
@@ -228,10 +232,9 @@ void Player::RandItemPut()
 	const int RAND_NUM_MAX = 20;
 
 	for (auto& item : itemList) {
-		VECTOR randPos = position + VGet(
-			rand() % RAND_NUM_MAX - (RAND_NUM_MAX / 2), 
-			rand() % RAND_NUM_MAX - (RAND_NUM_MAX / 2), 0.0f);
-		item->SetPosition(randPos);
+		int x = rand() % (TERRITORY_SIZE_X - ITEM_SIZE);
+		int y = rand() % (TERRITORY_SIZE_Y - ITEM_SIZE);
+		item->SetPosition(territory->positon + VGet((float)x, (float)y, 0.0f));
 		item->SetIsHold(false);
 	}
 	itemList.clear();
