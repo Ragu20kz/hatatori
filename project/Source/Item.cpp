@@ -20,7 +20,7 @@ void Item::Create(int type, const VECTOR& pos)
 
 void Item::Update()
 {
-	if (CheckHitKey(KEY_INPUT_UP)) {
+	/*if (CheckHitKey(KEY_INPUT_UP)) {
 		SetThrow(VGet(0, -0.1f, 0));
 	}
 	if (CheckHitKey(KEY_INPUT_DOWN)) {
@@ -31,7 +31,7 @@ void Item::Update()
 	}
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
 		SetThrow(VGet(-20.0f, 0, 0));
-	}
+	}*/
 	Throw();
 }
 

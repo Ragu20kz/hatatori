@@ -15,6 +15,7 @@ public:
 	void DebugGUI(); //デバッグ用のGUIを書いとく
 	const int const GetScore(int _num); //今のスコア
 	const int const GetItem(int _num); //乗っているアイテム数
+	const VECTOR const GetPosition(int _num); //陣地座標
 private:
 	std::vector <Territory*> territory;
 };

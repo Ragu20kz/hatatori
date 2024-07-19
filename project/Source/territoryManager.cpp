@@ -33,7 +33,7 @@ void TerritoryManager::Draw()
 		territory[i]->Draw();
 	}
 
-	DrawFormatString(0, 50, 0xffff00, "[2]score:%d ŒÂ”:%d", GetScore(2), GetItem(2));
+	//DrawFormatString(0, 50, 0xffff00, "[2]score:%d ŒÂ”:%d", GetScore(2), GetItem(2));
 }
 
 Territory* TerritoryManager::SetTerritory(const VECTOR& _pos, const int& _num)
@@ -111,4 +111,12 @@ int const TerritoryManager::GetItem(int _num)
 		return 0;
 	}
 	return territory[_num]->haveItem;
+}
+
+VECTOR const TerritoryManager::GetPosition(int _num)
+{
+	if (territory[_num] == nullptr) {
+		return VGet(0,0,0);
+	}
+	return territory[_num]->positon;
 }
