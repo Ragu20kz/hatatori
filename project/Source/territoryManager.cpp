@@ -67,8 +67,8 @@ void TerritoryManager::ItemCollider()
 	ItemManager* item = FindGameObject<ItemManager>();
 
 	for (int i = 0; i < territory.size(); i++) {
-		territory[i]->score    = 0;
-		territory[i]->haveItem = 0;
+		territory[i]->score = 0;
+		territory[i]->ResetItemList();
 	}
 
 	for (auto it : item->GetItemList()) {
@@ -78,7 +78,7 @@ void TerritoryManager::ItemCollider()
 			if (itemPos.x < boxPos.x + TERRITORY_SIZE_X && itemPos.x + ITEM_SIZE > boxPos.x &&
 				itemPos.y < boxPos.y + TERRITORY_SIZE_Y && itemPos.y + ITEM_SIZE > boxPos.y) {
 				territory[i]->score    += 100 * it->GetKind();
-				territory[i]->haveItem += 1;
+				territory[i]->AddItemList(it);
 				it->SetTerritory(true);
 				break;
 			}
@@ -113,5 +113,5 @@ int const TerritoryManager::GetItem(int _num)
 	if (territory[_num] == nullptr) {
 		return 0;
 	}
-	return territory[_num]->haveItem;
+	return territory[_num]->GetItemList().size();
 }

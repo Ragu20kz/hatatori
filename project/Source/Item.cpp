@@ -16,6 +16,8 @@ Item::Item()
 
 	isTerritory = false;
 
+	havPlayer = nullptr;
+
 	heavy = 0;
 	score = 1;
 }

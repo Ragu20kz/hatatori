@@ -22,6 +22,8 @@ public:
 		return territoryPos;
 	}
 
+	const VECTOR& GetInput() { return input; }
+
 	void Input(VECTOR dir);
 
 	/// <summary>
@@ -37,7 +39,7 @@ public:
 	/// <summary>
 	/// アイテムを投げる処理
 	/// </summary>
-	void ItemThrow();
+	void ItemThrow(const VECTOR& _vec);
 
 	/// <summary>
 	/// アイテムを散らばらせる処理

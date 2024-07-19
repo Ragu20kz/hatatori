@@ -190,21 +190,22 @@ void Player::ItemHit()
 		else {
 			weight += item->GetHeavy();
 			item->SetIsHold(true);
+			item->SetHavPlayer(this);
 			itemList.emplace_back(item);
 		}
 	}
 }
 
-void Player::ItemThrow()
+void Player::ItemThrow(const VECTOR& _vec)
 {
 	//手持ちのアイテムを投げる処理
 	if (itemList.size() <= 0) {
 		return;
 	}
 	//動きはItemで処理する
-	itemList.front()->SetThrow(VGet(5,0,0));
+	itemList.front()->SetThrow(_vec);
 	itemList.front()->SetIsHold(false);
-
+	itemList.front()->SetHavPlayer(nullptr);
 	itemList.pop_front();
 }
 
@@ -212,8 +213,9 @@ void Player::ItemScatter()
 {
 	//手持ちのアイテム全てなくす
 	for (auto& item : itemList) {
-		item->SetIsHold(false);
 		item->SetRandomPosition();
+		item->SetIsHold(false);
+		item->SetHavPlayer(nullptr);
 	}
 	itemList.clear();
 }
@@ -223,6 +225,7 @@ void Player::ItemPut()
 	for (auto& item : itemList) {
 		item->SetPosition(territoryPos);
 		item->SetIsHold(false);
+		item->SetHavPlayer(nullptr);
 	}
 	itemList.clear();
 }
@@ -236,6 +239,7 @@ void Player::RandItemPut()
 		int y = rand() % (TERRITORY_SIZE_Y - ITEM_SIZE);
 		item->SetPosition(territory->positon + VGet((float)x, (float)y, 0.0f));
 		item->SetIsHold(false);
+		item->SetHavPlayer(nullptr);
 	}
 	itemList.clear();
 }
