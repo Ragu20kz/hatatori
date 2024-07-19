@@ -1,6 +1,12 @@
 #pragma once
 #include "../Library/gameObject.h"
 
+namespace {
+	static const int ITEM_SIZE = 32;
+}
+
+class Player;
+
 class Item : public GameObject
 {
 public:
@@ -12,6 +18,9 @@ public:
 	const VECTOR& Position() {
 		return position;
 	}
+
+	const VECTOR GetCenterPos();
+
 	/// <summary>
 	/// アイテムを再配置する
 	/// </summary>
@@ -21,21 +30,19 @@ public:
 	void SetIsHold(bool _set) { isHold = _set; }
 	void SetPosition(const VECTOR& pos) { position = pos; }
 
-	const bool IsThrow()const { return isThrow; }
-	const bool IsHold()const { return isHold; }
-	const int GetHeavy()const { return heavy; }
-	const int GetScore()const { return score; }
-
+	const bool IsThrow()     const { return isThrow; }
+	const bool IsHold()      const { return isHold; }
+	const bool IsTerritory() const { return isTerritory; }
+	const int  GetHeavy()    const { return heavy; }
+	const int  GetScore()    const { return score; }
+	Player*    GetHavPlayer()      { return havPlayer; }
 
 	void SetThrow(VECTOR _vec);
 	void Throw();
 
-	void SetHold(bool _set) { isHold = _set; }
-	bool IsHold() { return isHold; }
-
-	bool IsThrow() { return isThrow; }
-
-	int GetScore() { return score; }
+	void SetHold(bool _set)            { isHold      = _set; }
+	void SetTerritory(bool _set)       { isTerritory = _set;}
+	void SetHavPlayer(Player* _player) { havPlayer   = _player; }
 
 	int GetKind() { return kind; }
 private:
@@ -43,10 +50,14 @@ private:
 	int kind;
 	VECTOR position;
 
+	Player* havPlayer;
+
 	bool isHold;//trueなら誰かが持ち歩いている状態
 	int whoseNum;//誰が持っているか、-1なら誰も持っていない
 	
 	bool isThrow;//trueなら投げられている状態（当たるとスタン）
+
+	bool isTerritory;//テリトリー上にあるかどうか
 
 	int heavy;//重さ
 	int score;//点数

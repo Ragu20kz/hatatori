@@ -8,7 +8,7 @@ PlayerAI::PlayerAI()
 	player = nullptr;
 	item   = nullptr;
 
-	info = PLAYER_INFO::DEFAULT;
+	/*info = PLAYER_INFO::DEFAULT;*/
 
 	nextPos = VECTOR();
 }
@@ -29,7 +29,7 @@ void PlayerAI::Start()
 
 void PlayerAI::Update()
 {
-	switch (info)
+	/*switch (info)
 	{
 	case PLAYER_INFO::DEFAULT:
 		DefaultUpdate();
@@ -46,7 +46,7 @@ void PlayerAI::Update()
 	case PLAYER_INFO::THROW:
 		ThrowUpdate();
 		break;
-	}
+	}*/
 }
 
 void PlayerAI::DefaultUpdate()

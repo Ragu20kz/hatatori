@@ -2,8 +2,13 @@
 #include "config.h"
 
 #include"territoryManager.h"
+#include "territory.h"
 #include "ItemManager.h"
 #include "Item.h"
+
+namespace {
+	static const int PLAYER_SIZE = 32;
+}
 
 Player::Player()
 {
@@ -28,20 +33,22 @@ Player::Player()
 
 Player::~Player()
 {
+	if (hImage > 0) {
+		DeleteGraph(hImage);
+		hImage = -1;
+	}
 	itemList.clear();
-
 }
-
 
 void Player::Update()
 {
-
 	if (!nowStan) {
-		position += input * 3.0f*speedBuff;
+		position += input * 3.0f * speedBuff;
 	}
 	ItemHit();
+	VECTOR v = position + (input * -1.0f * ITEM_SIZE);
 	for (auto& item : itemList) {
-		item->SetPosition(position);
+		item->SetPosition(v);
 	}
 
 	////////////////////
@@ -57,13 +64,11 @@ void Player::Update()
 	if (CheckHitKey(KEY_INPUT_4)) {
 		ItemScatter();
 	}
-
-
 }
 
 void Player::Draw()
 {
-	DrawRectGraph((int)position.x, (int)position.y, 2, 2, 32, 32, hImage, TRUE);
+	DrawRectGraph((int)position.x, (int)position.y, 2, 2, PLAYER_SIZE, PLAYER_SIZE, hImage, TRUE);
 	char s[32];
 	sprintf_s<32>(s, "SCORE %6d", score);
 	int x = 0;
@@ -108,40 +113,38 @@ void Player::SetChara(int id)
 		hImage = LoadGraph("data/textures/player1.png");
 		position = VGet(WALL_SIZE, 
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY , 0);
-		territoryPos = position;
-		position.y -= 32;
 		break;
 	case 1:
 		hImage = LoadGraph("data/textures/player2.png");
 		position = VGet(WALL_SIZE + boxSizeX + 125,
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
-		territoryPos = position;
-		position.y -= 32;
 		break;
 	case 2:
 		hImage = LoadGraph("data/textures/player3.png");
 		position = VGet(WALL_SIZE + boxSizeX * 2 + 250,
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
-		territoryPos = position;
-		position.y -= 32;
 		break;
 	case 3:
 		hImage = LoadGraph("data/textures/player4.png");
 		position = VGet(SCREEN_WIDTH - (WALL_SIZE + boxSizeX) - 250,
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
-		territoryPos = position;
-		position.y -= 32;
 		break;
 	case 4:	hImage = LoadGraph("data/textures/player5.png");
-		position = VGet(SCREEN_WIDTH-(WALL_SIZE + boxSizeX), 
+		position = VGet(SCREEN_WIDTH -(WALL_SIZE + boxSizeX), 
 						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
-		territoryPos = position;
-		position.y -= 32;
 		break;
 
 	}
+	territoryPos  = position;
+	position.y   -= 32;
+
 	TerritoryManager* t = FindGameObject<TerritoryManager>();
-	territory = t->SetTerritory(territoryPos, id);
+	territory           = t->SetTerritory(territoryPos, id);
+}
+
+const VECTOR Player::GetCenterPos()
+{
+	return position + VGet((float)(PLAYER_SIZE / 2), (float)(PLAYER_SIZE / 2), 0);
 }
 
 void Player::Input(VECTOR dir)
@@ -162,9 +165,9 @@ void Player::SetSpeed()
 void Player::ItemHit()
 {
 	for (auto& item : itemManager->GetItemList()) {
-		VECTOR posSub = item->Position() - position;
+		VECTOR posSub = item->GetCenterPos() - position;
 		//当たっていないので飛ばす
-		if (VSize(posSub) > ILUST_RADIUS * 2) {
+		if (VSize(posSub) > ILUST_RADIUS) {
 			continue;
 		}
 		//誰かが持ち歩いているなら飛ばす
@@ -187,24 +190,22 @@ void Player::ItemHit()
 		else {
 			weight += item->GetHeavy();
 			item->SetIsHold(true);
+			item->SetHavPlayer(this);
 			itemList.emplace_back(item);
-
 		}
 	}
-
-
 }
 
-void Player::ItemThrow()
+void Player::ItemThrow(const VECTOR& _vec)
 {
 	//手持ちのアイテムを投げる処理
 	if (itemList.size() <= 0) {
 		return;
 	}
 	//動きはItemで処理する
-	itemList.front()->SetThrow(VGet(5,0,0));
+	itemList.front()->SetThrow(_vec);
 	itemList.front()->SetIsHold(false);
-
+	itemList.front()->SetHavPlayer(nullptr);
 	itemList.pop_front();
 }
 
@@ -212,8 +213,9 @@ void Player::ItemScatter()
 {
 	//手持ちのアイテム全てなくす
 	for (auto& item : itemList) {
-		item->SetIsHold(false);
 		item->SetRandomPosition();
+		item->SetIsHold(false);
+		item->SetHavPlayer(nullptr);
 	}
 	itemList.clear();
 }
@@ -223,5 +225,21 @@ void Player::ItemPut()
 	for (auto& item : itemList) {
 		item->SetPosition(territoryPos);
 		item->SetIsHold(false);
+		item->SetHavPlayer(nullptr);
 	}
+	itemList.clear();
+}
+
+void Player::RandItemPut()
+{
+	const int RAND_NUM_MAX = 20;
+
+	for (auto& item : itemList) {
+		int x = rand() % (TERRITORY_SIZE_X - ITEM_SIZE);
+		int y = rand() % (TERRITORY_SIZE_Y - ITEM_SIZE);
+		item->SetPosition(territory->positon + VGet((float)x, (float)y, 0.0f));
+		item->SetIsHold(false);
+		item->SetHavPlayer(nullptr);
+	}
+	itemList.clear();
 }

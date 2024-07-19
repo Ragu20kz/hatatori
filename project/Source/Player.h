@@ -15,9 +15,14 @@ public:
 	const VECTOR& Position() {
 		return position;
 	}
+
+	const VECTOR GetCenterPos();
+
 	const VECTOR& TerritoryPos() {
 		return territoryPos;
 	}
+
+	const VECTOR& GetInput() { return input; }
 
 	void Input(VECTOR dir);
 
@@ -34,7 +39,7 @@ public:
 	/// <summary>
 	/// アイテムを投げる処理
 	/// </summary>
-	void ItemThrow();
+	void ItemThrow(const VECTOR& _vec);
 
 	/// <summary>
 	/// アイテムを散らばらせる処理
@@ -45,6 +50,11 @@ public:
 	/// アイテムを置く処理
 	/// </summary>
 	void ItemPut();
+
+	/// <summary>
+	/// アイテムを置く処理
+	/// </summary>
+	void RandItemPut();
 
 	Territory* GetTerritory() { return territory; }
 private:
