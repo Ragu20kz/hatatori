@@ -38,6 +38,7 @@ public:
 	Player*    GetHavPlayer()      { return havPlayer; }
 
 	void SetThrow(const VECTOR& _vec);
+	void ThrowReset();
 	void Throw();
 
 	void SetHold(bool _set)            { isHold      = _set; }

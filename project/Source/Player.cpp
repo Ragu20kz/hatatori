@@ -178,6 +178,10 @@ void Player::ItemHit()
 		if (item->IsHold()) {
 			continue;
 		}
+		//飛ばした弾に当たらないように
+		if (item->GetHavPlayer() == this) {
+			continue;
+		}
 
 		//アイテムに当たったら
 		//投げられているアイテムなら
@@ -210,7 +214,6 @@ void Player::ItemThrow(const VECTOR& _vec)
 	//動きはItemで処理する
 	i->SetThrow(_vec);
 	i->SetIsHold(false);
-	i->SetHavPlayer(nullptr);
 	itemList.pop_front();
 }
 

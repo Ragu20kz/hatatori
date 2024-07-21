@@ -36,7 +36,7 @@ void Item::Create(int type, const VECTOR& pos)
 
 void Item::Update()
 {
-	if (CheckHitKey(KEY_INPUT_UP)) {
+	/*if (CheckHitKey(KEY_INPUT_UP)) {
 		SetThrow(VGet(-10.0f, -10.0f, 0));
 	}
 	if (CheckHitKey(KEY_INPUT_DOWN)) {
@@ -47,14 +47,15 @@ void Item::Update()
 	}
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
 		SetThrow(VGet(-10.0f, 0, 0));
-	}
+	}*/
 	Throw();
 }
 
 void Item::Draw()
 {
 	DrawRectGraph((int)position.x, (int)position.y, kind * 36 + 2, 2, 32, 32, hImage, TRUE);
-	DrawFormatString((int)position.x, (int)position.y, 0xff0000, "%.1f", speed);
+	//DrawFormatString((int)position.x, (int)position.y, 0xff0000, "%.1f", speed);
+	DrawFormatString((int)position.x, (int)position.y, 0xFFFFFF, "%s", isTerritory ?  "YES" : "NO");
 }
 
 const VECTOR Item::GetCenterPos()
@@ -71,6 +72,12 @@ void Item::SetThrow(const VECTOR& _vec)
 	isThrow    = true;
 }
 
+void Item::ThrowReset() {
+	speed     = 0.0f;
+	isThrow   = false;
+	havPlayer = nullptr;
+}
+
 void Item::Throw()
 {
 	if (!isThrow) {
@@ -81,23 +88,14 @@ void Item::Throw()
 	startTime += 1.0f / 60.0f;
 
 	if (rate > 1.0f) {
-		speed = 0.0f;
-		isThrow = false;
+		ThrowReset();
 		return;
 	}
 
 	speed = -startPower * rate + startPower;
-	/*if (speed > 0.0f) {
-		speed -= 0.1f;
-	}
-	else {
-		speed   = 0.0f;
-		isThrow = false;
-	}*/
-
 	if (speed <= 0.0f) {
-		speed   = 0.0f;
-		isThrow = false;
+		ThrowReset();
+		return;
 	}
 
 	if (position.x <= WALL_SIZE || position.x + ITEM_SIZE >= SCREEN_WIDTH  - WALL_SIZE ||
