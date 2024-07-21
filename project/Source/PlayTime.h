@@ -12,6 +12,8 @@ public:
 	bool SetActiveTime(bool active);
 	int GetCountTime() const { return time; }
 
+	bool IsTimeUp();
+
 private:
 	int time;      //ŽžŠÔ
 	int timeFrame;

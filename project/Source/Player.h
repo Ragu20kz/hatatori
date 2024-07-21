@@ -16,6 +16,7 @@ public:
 	void Update() override;
 	void Draw() override;
 	void SetChara(int id);
+	void SetPos(const VECTOR& _pos) { position = _pos; }
 
 	const VECTOR& Position()              { return position; }
 	const VECTOR GetCenterPos();
@@ -23,6 +24,7 @@ public:
 	const VECTOR& GetInput()              { return input; }
 	bool IsStun()                         { return nowStun; }
 	const std::list<Item*>& GetItemList() { return itemList; }
+	const int& GetType()                  { return type; }
 
 	void Input(VECTOR dir);
 

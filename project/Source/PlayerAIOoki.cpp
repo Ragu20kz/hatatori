@@ -61,7 +61,7 @@ void PlayerAIOoki::Update()
 
 void PlayerAIOoki::Draw()
 {
-	DrawFormatString(200, 300, 0xFFFFFF, "state %d", (int)info);
+	//DrawFormatString(200, 300, 0xFFFFFF, "state %d", (int)info);
 	//DrawFormatString(200, 300, 0xFFFFFF, "%s", targetItem != nullptr ? "ARI" : "NULL");
 }
 

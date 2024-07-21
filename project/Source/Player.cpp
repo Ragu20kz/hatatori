@@ -143,7 +143,9 @@ void Player::SetChara(int id)
 	position.y   -= 32;
 
 	TerritoryManager* t = FindGameObject<TerritoryManager>();
-	territory           = t->SetTerritory(territoryPos, id);
+	if (t) {
+		territory = t->SetTerritory(territoryPos, id);
+	}
 }
 
 const VECTOR Player::GetCenterPos()

@@ -95,6 +95,12 @@
     <ClCompile Include="Source\PlayTime.cpp">
       <Filter>PlayScene\time</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ResultScene.cpp">
+      <Filter>ResultScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Score.cpp">
+      <Filter>Score</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\config.h" />
@@ -204,6 +210,12 @@
     <ClInclude Include="Source\PlayTime.h">
       <Filter>PlayScene\time</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ResultScene.h">
+      <Filter>ResultScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Score.h">
+      <Filter>Score</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
@@ -244,6 +256,12 @@
     </Filter>
     <Filter Include="PlayScene\time">
       <UniqueIdentifier>{b94a0122-ac2e-4a7c-bbbd-a7e92a614cd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResultScene">
+      <UniqueIdentifier>{a0ba6179-1c12-4738-91a3-d64d14379493}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Score">
+      <UniqueIdentifier>{0cdff7d2-f122-48f7-ada4-dcb35af76450}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

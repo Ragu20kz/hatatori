@@ -13,15 +13,15 @@
 #include "PlayerAITsukumo.h"
 #include "PlayerAISyuu.h"
 
-
-#include"territoryManager.h"
-#include"PlayTime.h"
+#include "territoryManager.h"
+#include "PlayTime.h"
+#include "Score.h"
 
 PlayScene::PlayScene()
 {
 	TerritoryManager* territory = Instantiate<TerritoryManager>();
 	Instantiate<ItemManager>();
-	Instantiate<PlayTime>();
+	time = Instantiate<PlayTime>();
 
 	Player* inst[PLAYER_NUM];
 	for (int i = 0; i < PLAYER_NUM; i++) {
@@ -40,7 +40,6 @@ PlayScene::PlayScene()
 	p3->SetPlayer(inst[2]);
 	p4->SetPlayer(inst[3]);
 	p5->SetPlayer(inst[4]);
-
 }
 
 PlayScene::~PlayScene()
@@ -53,6 +52,18 @@ void PlayScene::Update()
 		SceneManager::ChangeScene("TitleScene");
 	}
 	SceneBase::Update();
+
+	if (time->IsTimeUp()) {
+		auto playerList = FindGameObjects<Player>();
+		playerList.sort([](Player* a, Player* b) { return a->GetTerritory()->score > a->GetTerritory()->score; });
+		Score* s = Score::GetInstance();
+		for (auto it = playerList.begin(); it != playerList.end(); it++) {
+			SCORE_INFO si;
+			si.playerNun = (*it)->GetType();
+			s->AddScore(si);
+		}
+		SceneManager::ChangeScene("ResultScene");
+	}
 }
 
 void PlayScene::Draw()
