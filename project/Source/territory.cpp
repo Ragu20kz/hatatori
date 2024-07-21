@@ -23,11 +23,11 @@ void Territory::Update()
 void Territory::Draw()
 {
 	SetDrawBlendMode(DX_BLENDGRAPHTYPE_ALPHA, 100);
-	DrawBox(positon.x, positon.y, positon.x + TERRITORY_SIZE_X, positon.y + TERRITORY_SIZE_Y, color, true);
+	DrawBox((int)positon.x, (int)positon.y, (int)(positon.x + TERRITORY_SIZE_X), (int)(positon.y + TERRITORY_SIZE_Y), color, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
-	DrawFormatString(positon.x, positon.y, 0x00ffff, "[%d]:score:%d", number, score);
-	DrawFormatString(positon.x, positon.y + 30, 0x00ffff, "[%d]:ŠŽ”:%d", number, itemList.size());
+	DrawFormatString((int)positon.x, (int)positon.y, 0x00ffff, "[%d]:score:%d", number, score);
+	DrawFormatString((int)positon.x, (int)(positon.y + 30), 0x00ffff, "[%d]:ŠŽ”:%d", number, itemList.size());
 }
 
 const VECTOR Territory::GetConterPos()
@@ -43,4 +43,13 @@ void Territory::AddItemList(Item* _item)
 void Territory::ResetItemList()
 {
 	itemList.clear();
+}
+
+bool Territory::IsInside(const VECTOR& _pos, const VECTOR& _size)
+{
+	if (positon.x + TERRITORY_SIZE_X > _pos.x && positon.x < _pos.x + _size.x &&
+		positon.y + TERRITORY_SIZE_Y > _pos.y && positon.y < _pos.y + _size.y) {
+		return true;
+	}
+	return false;
 }

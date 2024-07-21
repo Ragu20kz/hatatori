@@ -6,10 +6,6 @@
 #include "ItemManager.h"
 #include "Item.h"
 
-namespace {
-	static const int PLAYER_SIZE = 32;
-}
-
 Player::Player()
 {
 	territory = nullptr;
@@ -17,17 +13,17 @@ Player::Player()
 	position = VECTOR();
 	hImage   = -1;
 	input    = VECTOR();
-	score = 0;
-	type = -1;
+	score    = 0;
+	type     = -1;
 
 	speedBuff = 1.0f;
 	weightMax = 10;//仮
-	stanTime = 0.0f;
-	nowStan = false;
-	weight = 0;
+	stunTime  = 0.0f;
+	nowStun   = false;
+	weight    = 0;
 
 	itemList.clear();
-	itemManager = FindGameObject<ItemManager>();
+	itemManager  = FindGameObject<ItemManager>();
 	territoryPos = VECTOR();
 }
 
@@ -42,8 +38,16 @@ Player::~Player()
 
 void Player::Update()
 {
-	if (!nowStan) {
+	if (!nowStun) {
 		position += input * 3.0f * speedBuff;
+	}
+	else {
+		stunTime -= 1.0f / 60.0f;
+		if (stunTime <= 0.0f) {
+			stunTime = 0.0f;
+			nowStun  = false;
+		}
+		return;
 	}
 	ItemHit();
 	VECTOR v = position + (input * -1.0f * ITEM_SIZE);
@@ -53,13 +57,13 @@ void Player::Update()
 
 	////////////////////
 	if (CheckHitKey(KEY_INPUT_1)) {
-		nowStan = true;
+		nowStun = true;
 	}
 	if (CheckHitKey(KEY_INPUT_2)) {
-		nowStan = false;
+		nowStun = false;
 	}
 	if (CheckHitKey(KEY_INPUT_3)) {
-		ItemThrow();
+		ItemThrow(VGet(5, 0, 0));
 	}
 	if (CheckHitKey(KEY_INPUT_4)) {
 		ItemScatter();
@@ -111,27 +115,27 @@ void Player::SetChara(int id)
 	switch (id) {
 	case 0:
 		hImage = LoadGraph("data/textures/player1.png");
-		position = VGet(WALL_SIZE, 
-						SCREEN_HEIGHT - WALL_SIZE - boxSizeY , 0);
+		position = VGet((float)WALL_SIZE, 
+			(float)(SCREEN_HEIGHT - WALL_SIZE - boxSizeY) , 0);
 		break;
 	case 1:
 		hImage = LoadGraph("data/textures/player2.png");
-		position = VGet(WALL_SIZE + boxSizeX + 125,
-						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
+		position = VGet((float)(WALL_SIZE + boxSizeX + 125),
+			(float)(SCREEN_HEIGHT - WALL_SIZE - boxSizeY), 0);
 		break;
 	case 2:
 		hImage = LoadGraph("data/textures/player3.png");
-		position = VGet(WALL_SIZE + boxSizeX * 2 + 250,
-						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
+		position = VGet((float)(WALL_SIZE + boxSizeX * 2 + 250),
+			(float)(SCREEN_HEIGHT - WALL_SIZE - boxSizeY), 0);
 		break;
 	case 3:
 		hImage = LoadGraph("data/textures/player4.png");
-		position = VGet(SCREEN_WIDTH - (WALL_SIZE + boxSizeX) - 250,
-						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
+		position = VGet((float)(SCREEN_WIDTH - (WALL_SIZE + boxSizeX) - 250),
+			(float)(SCREEN_HEIGHT - WALL_SIZE - boxSizeY), 0);
 		break;
 	case 4:	hImage = LoadGraph("data/textures/player5.png");
-		position = VGet(SCREEN_WIDTH -(WALL_SIZE + boxSizeX), 
-						SCREEN_HEIGHT - WALL_SIZE - boxSizeY, 0);
+		position = VGet((float)(SCREEN_WIDTH -(WALL_SIZE + boxSizeX)),
+			(float)(SCREEN_HEIGHT - WALL_SIZE - boxSizeY), 0);
 		break;
 
 	}
@@ -156,7 +160,7 @@ void Player::Input(VECTOR dir)
 void Player::SetSpeed()
 {
 	if (weight > weightMax) {
-		float debuff = weight - weightMax;
+		float debuff = (float)(weight - weightMax);
 		debuff /= 100;
 		speedBuff = 1.0f - debuff;
 	}
@@ -174,8 +178,8 @@ void Player::ItemHit()
 		if (item->IsHold()) {
 			continue;
 		}
-		//スタン中は飛ばす
-		if (nowStan) {
+		//飛ばした弾に当たらないように
+		if (item->GetHavPlayer() == this) {
 			continue;
 		}
 
@@ -183,8 +187,11 @@ void Player::ItemHit()
 		//投げられているアイテムなら
 		//スタンする処理
 		if (item->IsThrow()) {
-			nowStan = true;
+			//スタン中は飛ばす
+			stunTime = 2.0f;
+			nowStun  = true;
 			ItemScatter();
+			return;
 		}
 		//拾う処理
 		else {
@@ -202,10 +209,11 @@ void Player::ItemThrow(const VECTOR& _vec)
 	if (itemList.size() <= 0) {
 		return;
 	}
+	Item* i = itemList.front();
+
 	//動きはItemで処理する
-	itemList.front()->SetThrow(_vec);
-	itemList.front()->SetIsHold(false);
-	itemList.front()->SetHavPlayer(nullptr);
+	i->SetThrow(_vec);
+	i->SetIsHold(false);
 	itemList.pop_front();
 }
 

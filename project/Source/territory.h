@@ -15,6 +15,8 @@ public:
 	const std::list<Item*>& GetItemList() { return itemList; }
 	void AddItemList(Item* _item);
 	void ResetItemList();
+
+	bool IsInside(const VECTOR& _pos, const VECTOR& _size);
 	
 	VECTOR positon;
 	int color;
