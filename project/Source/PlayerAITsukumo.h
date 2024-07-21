@@ -2,6 +2,11 @@
 #include "../Library/gameObject.h"
 #include "Player.h"
 #include "territory.h"
+#include "ItemManager.h"
+#include "territoryManager.h"
+
+class Item;
+class TerritoryManager;
 
 class PlayerAITsukumo : public GameObject {
 public:
@@ -12,7 +17,9 @@ public:
 
 private:
 	Player* player;
-	Territory* territory;
+	TerritoryManager* territory;
+	ItemManager* itemManager;
+	Item* item;
 
 	enum class STATE {
 		STOP,
@@ -23,7 +30,11 @@ private:
 	};
 	STATE state;
 
+	float angle;
+
 	void GetItemMove(); 
 	void GoingHomeMove();
+
+	bool CollisionDetectionPlayer(VECTOR _player, VECTOR _num, int _size);
 
 };
