@@ -22,11 +22,16 @@ private:
 	};
 	STATE state;
 
+	VECTOR target;
+	VECTOR move;
+	bool allGet;
+
 	void Search();
 	void Catch();
 	void Attack();
 	void Goal();
 
-	bool IsItem(VECTOR _pos);
-	VECTOR target;
+	void Walk();
+
+	bool IsItem(VECTOR _pos); //アイテムが自分の陣地に乗ってるか
 };

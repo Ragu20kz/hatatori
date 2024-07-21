@@ -15,7 +15,9 @@ PlayerAIHiguti::PlayerAIHiguti()
 	player = nullptr;
 	item = nullptr;
 	state = STATE::IDLE;
-	
+	target = VGet(0, 0, 0);
+	move = VGet(0, 0, 0);
+	allGet = false;
 }
 
 PlayerAIHiguti::~PlayerAIHiguti()
@@ -29,8 +31,6 @@ void PlayerAIHiguti::SetPlayer(Player* inst)
 
 void PlayerAIHiguti::Update()
 {
-	//player->Input(VGet(0, 0, 0));
-
 	switch (state)
 	{
 	case PlayerAIHiguti::STATE::IDLE:
@@ -43,7 +43,6 @@ void PlayerAIHiguti::Update()
 		Catch();
 		break;
 	case PlayerAIHiguti::STATE::ATTACK:
-		player->Input(VGet(0, 0, 0));
 		break;
 	case PlayerAIHiguti::STATE::GOAL:
 		Goal();
@@ -51,7 +50,7 @@ void PlayerAIHiguti::Update()
 	default:
 		break;
 	}
-
+	player->Input(move);
 	DebugPrintf(15, 430, "state:%d", state);
 }
 
@@ -63,28 +62,33 @@ void PlayerAIHiguti::Search()
 
 	for (auto it : itemM->GetItemList()) {
 		VECTOR iPos = it->Position();
-
+		allGet = false;
 		if (IsItem(iPos)) {
 			continue;
 		}
-		if (it->IsHold()) {
+		if (it->IsThrow()) {
 			continue;
 		}
+		if (it->IsHold() && it->GetHavPlayer() == player) {
+			continue;
+		}
+		DebugPrintf(iPos.x, iPos.y, "have:%d", it->IsHold());
+
 		if (dis > VSize(VSub(pPos, iPos))) {
 			dis = VSize(VSub(pPos, iPos)); 
 			item = it;
 			target = iPos;
 		}
 	}
+
 	state = STATE::CATCH;
 }
 
 void PlayerAIHiguti::Catch()
 {
 	VECTOR sub = target - player->Position();
-	VECTOR move = VScale(VNorm(sub), VSize(sub) / 10);
-	player->Input(move);
-	
+	move = VScale(VNorm(sub), VSize(sub) / 10);
+
 	if (item->IsHold()) {
 		Search();
 		if (VSize(VSub(player->Position(), target)) < ITEM_DISTANCE_NORM) {
@@ -94,35 +98,52 @@ void PlayerAIHiguti::Catch()
 			state = STATE::GOAL;
 		}
 	}
+}
 
-	float dis = VSize(VSub(player->Position(), target));
+void PlayerAIHiguti::Goal()
+{
+	VECTOR boxPos = player->TerritoryPos();
+	VECTOR pPos   = player->Position();
+	VECTOR boxCenter = VGet(boxPos.x + TERRITORY_SIZE_X / 2, boxPos.y + TERRITORY_SIZE_Y / 2 ,0);
+
+	VECTOR sub = boxCenter - pPos;
+	move = VScale(VNorm(sub), VSize(sub) / 10);
+
+	if (pPos.x  < boxPos.x + TERRITORY_SIZE_X && pPos.x + 32 > boxPos.x &&
+		pPos.y  < boxPos.y + TERRITORY_SIZE_Y && pPos.y + 32 > boxPos.y + TERRITORY_SIZE_Y/2) {
+		player->ItemPut();
+		state = STATE::SEARCH;
+	}
 }
 
 void PlayerAIHiguti::Attack()
 {
 }
 
-void PlayerAIHiguti::Goal()
-{
-	TerritoryManager* terM = FindGameObject<TerritoryManager>();
-	VECTOR sub = terM->GetPosition(0) - player->Position();
-	VECTOR move = VScale(VNorm(sub), VSize(sub) / 10);
-	player->Input(move);
-
-	if (VSize(VSub(player->Position(), terM->GetPosition(0))) < 5.0f) {
-		//player->ItemThrow();
-		state = STATE::SEARCH;
-	}
-}
-
 bool PlayerAIHiguti::IsItem(VECTOR _pos)
 {
-	TerritoryManager* terM = FindGameObject<TerritoryManager>();
-
-	VECTOR boxPos = terM->GetPosition(0);
+	VECTOR boxPos = player->TerritoryPos();
 	if (_pos.x  < boxPos.x + TERRITORY_SIZE_X && _pos.x + 32 > boxPos.x &&
-		_pos.y < boxPos.y + TERRITORY_SIZE_Y && _pos.y + 32 > boxPos.y) {
+		_pos.y  < boxPos.y + TERRITORY_SIZE_Y && _pos.y + 32 > boxPos.y) {
 		return true;
 	}
 	return false;
+}
+
+void PlayerAIHiguti::Walk()
+{
+	float speed = 5.0f;
+	VECTOR pPos = player->Position();
+	if (pPos.x < WALL_SIZE) {
+		move = VGet( speed, -speed, 0);
+	}
+	if (pPos.x + 32 > SCREEN_WIDTH - WALL_SIZE) {
+		move = VGet(-speed, speed, 0);
+	}
+	if (pPos.y < WALL_SIZE) {
+		move = VGet(speed, speed, 0);
+	}
+	if (pPos.y + 32 > SCREEN_HEIGHT-WALL_SIZE) {
+		move = VGet( -speed, -speed, 0);
+	}
 }
