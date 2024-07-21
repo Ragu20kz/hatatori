@@ -5,6 +5,10 @@ class ItemManager;
 class Item;
 class Territory;
 
+namespace {
+	static const int PLAYER_SIZE = 32;
+}
+
 class Player : public GameObject {
 public:
 	Player();
@@ -12,17 +16,13 @@ public:
 	void Update() override;
 	void Draw() override;
 	void SetChara(int id);
-	const VECTOR& Position() {
-		return position;
-	}
 
+	const VECTOR& Position()              { return position; }
 	const VECTOR GetCenterPos();
-
-	const VECTOR& TerritoryPos() {
-		return territoryPos;
-	}
-
-	const VECTOR& GetInput() { return input; }
+	const VECTOR& TerritoryPos()          { return territoryPos; }
+	const VECTOR& GetInput()              { return input; }
+	bool IsStun()                         { return nowStun; }
+	const std::list<Item*>& GetItemList() { return itemList; }
 
 	void Input(VECTOR dir);
 
@@ -72,6 +72,6 @@ private:
 	float speedBuff;	//スピード倍率、デフォルトは1.0f
 	int weightMax;		//重さ上限、これ以上増えると遅くなるよ
 	int weight;			//現在の重さ
-	float stanTime;		//スタン時間
-	bool nowStan;		//今スタンしているか、していればtrue
+	float stunTime;		//スタン時間
+	bool nowStun;		//今スタンしているか、していればtrue
 };

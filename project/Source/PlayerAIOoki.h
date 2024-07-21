@@ -3,7 +3,7 @@
 #include "Player.h"
 
 class ItemManager;
-const Item;
+class Item;
 
 enum class PLAYER_INFO {
 	DEFAULT = 0,    //�ʏ펞
@@ -24,6 +24,7 @@ private:
 	Player* player;
 	ItemManager* item;
 	Item* targetItem;
+	Player* targetPlayer;
 
 	PLAYER_INFO info;
 

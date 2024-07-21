@@ -37,7 +37,7 @@ public:
 	const int  GetScore()    const { return score; }
 	Player*    GetHavPlayer()      { return havPlayer; }
 
-	void SetThrow(VECTOR _vec);
+	void SetThrow(const VECTOR& _vec);
 	void Throw();
 
 	void SetHold(bool _set)            { isHold      = _set; }
@@ -64,4 +64,8 @@ private:
 
 	VECTOR vector;
 	float speed;
+
+	float startTime;
+	float endTime;
+	float startPower;
 };

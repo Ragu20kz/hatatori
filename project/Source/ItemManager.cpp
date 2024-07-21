@@ -63,13 +63,18 @@ Item* ItemManager::GetCloseItem(const VECTOR& _pos)
 
 Item* ItemManager::GetFieldCloseItem(const VECTOR& _pos)
 {
-	Item* selectItem = itemList.front(); //list‚Ì“ª‚ðŽæ“¾
-	auto itr = itemList.begin();
-	float lenge = VSquareSize(selectItem->Position() - _pos);
+	Item* selectItem = nullptr; 
+	float lenge      = 0.0f;
 
-	for (itr++; itr != itemList.end(); itr++) {
+	for (auto itr = itemList.begin(); itr != itemList.end(); itr++) {
 		Item* nowItem = (*itr);
-		if (nowItem->IsHold() || nowItem->IsTerritory()) {
+		if (nowItem->IsHold() || nowItem->IsTerritory() || nowItem->IsThrow()) {
+			continue;
+		}
+
+		if (selectItem == nullptr) {
+			selectItem = nowItem;
+			lenge      = VSquareSize(nowItem->Position() - _pos);
 			continue;
 		}
 
@@ -77,7 +82,7 @@ Item* ItemManager::GetFieldCloseItem(const VECTOR& _pos)
 		//‹——£”äŠr
 		if (lenge > len) {
 			selectItem = nowItem;
-			lenge = len;
+			lenge      = len;
 		}
 	}
 	//ˆê”Ô‹ß‚¢ƒAƒCƒeƒ€
