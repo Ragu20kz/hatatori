@@ -5,9 +5,8 @@ PlayerAITsukumo::PlayerAITsukumo(){
 	player = FindGameObject<Player>();
 	territory = FindGameObject<TerritoryManager>();
 	itemManager = FindGameObject<ItemManager>();
-	//item = itemManager->GetItemList()
-
-	angle = 0;
+	
+	angle = 0.0f;
 
 	state = STATE::STOP;
 }
@@ -30,14 +29,17 @@ void PlayerAITsukumo::Update(){
 }
 
 void PlayerAITsukumo::GetItemMove(){
-	
+	VECTOR playerPos = player->Position();
+	//item = itemManager->GetItemList();
+
+
 }
 
 void PlayerAITsukumo::GoingHomeMove(){
 	VECTOR playerPos = player->Position();
 	VECTOR territoryPos = territory->GetPosition(3);
 	//ÉvÉåÉCÉÑÅ[Çí«Ç¢Ç©ÇØÇÈ
-	if (!CollisionDetectionPlayer(playerPos, territoryPos, 25)) {
+	if (!CollisionDetectionPlayer(playerPos, territoryPos, 50)) {
 		//å„Ç≈Ç‚ÇÈ
 		angle = atan2((double)playerPos.y - territoryPos.y,
 			(double)playerPos.x - territoryPos.x);
