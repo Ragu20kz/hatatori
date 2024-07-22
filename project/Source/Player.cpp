@@ -25,6 +25,9 @@ Player::Player()
 	itemList.clear();
 	itemManager  = FindGameObject<ItemManager>();
 	territoryPos = VECTOR();
+
+	ilustTimer = 0;
+	ilustSrc = 0;
 }
 
 Player::~Player()
@@ -38,6 +41,7 @@ Player::~Player()
 
 void Player::Update()
 {
+	SetSpeed();
 	if (!nowStun) {
 		position += input * 3.0f * speedBuff;
 	}
@@ -68,11 +72,20 @@ void Player::Update()
 	if (CheckHitKey(KEY_INPUT_4)) {
 		ItemScatter();
 	}
+
+	//イラストアニメーション用
+	if (++ilustTimer > 10) {
+		ilustTimer = 0;
+		if (++ilustSrc > 120) {
+			ilustSrc = 0;
+		}
+	}
+
 }
 
 void Player::Draw()
 {
-	DrawRectGraph((int)position.x, (int)position.y, 2, 2, PLAYER_SIZE, PLAYER_SIZE, hImage, TRUE);
+	DrawRectGraph((int)position.x, (int)position.y, PLAYER_SIZE * (ilustSrc % 4), 0, PLAYER_SIZE, PLAYER_SIZE, hImage, TRUE);
 	char s[32];
 	sprintf_s<32>(s, "SCORE %6d", score);
 	int x = 0;
