@@ -153,6 +153,16 @@ const VECTOR Player::GetCenterPos()
 	return position + VGet((float)(PLAYER_SIZE / 2), (float)(PLAYER_SIZE / 2), 0);
 }
 
+const int Player::GetScore()
+{
+	TerritoryManager* t = FindGameObject<TerritoryManager>();
+	if (t != nullptr) {
+		score = t->GetScore(type);
+		return score;
+	}
+	return 0;
+}
+
 void Player::Input(VECTOR dir)
 {
 	dir.z = 0;

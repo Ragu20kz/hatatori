@@ -26,6 +26,8 @@ public:
 	const std::list<Item*>& GetItemList() { return itemList; }
 	const int& GetType()                  { return type; }
 
+	const int GetScore();
+
 	void Input(VECTOR dir);
 
 	/// <summary>

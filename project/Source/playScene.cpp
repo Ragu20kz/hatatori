@@ -60,6 +60,7 @@ void PlayScene::Update()
 		for (auto it = playerList.begin(); it != playerList.end(); it++) {
 			SCORE_INFO si;
 			si.playerNun = (*it)->GetType();
+			si.score = (*it)->GetScore();
 			s->AddScore(si);
 		}
 		SceneManager::ChangeScene("ResultScene");
