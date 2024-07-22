@@ -41,6 +41,7 @@ Player::~Player()
 
 void Player::Update()
 {
+	SetSpeed();
 	if (!nowStun) {
 		position += input * 3.0f * speedBuff;
 	}
@@ -72,6 +73,7 @@ void Player::Update()
 		ItemScatter();
 	}
 
+	//イラストアニメーション用
 	if (++ilustTimer > 10) {
 		ilustTimer = 0;
 		if (++ilustSrc > 120) {

@@ -22,7 +22,7 @@ Item::Item()
 
 	havPlayer = nullptr;
 
-	heavy = 0;
+	heavy = 2;
 	score = 1;
 }
 

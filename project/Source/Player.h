@@ -17,6 +17,7 @@ public:
 	void Draw() override;
 	void SetChara(int id);
 	void SetPos(const VECTOR& _pos) { position = _pos; }
+	void SetWeight(int _set) { weight = _set; }
 
 	const VECTOR& Position()              { return position; }
 	const VECTOR GetCenterPos();
@@ -25,6 +26,7 @@ public:
 	bool IsStun()                         { return nowStun; }
 	const std::list<Item*>& GetItemList() { return itemList; }
 	const int& GetType()                  { return type; }
+	const int GetWeight()				  { return weight; }
 
 	void Input(VECTOR dir);
 
