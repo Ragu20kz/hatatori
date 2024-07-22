@@ -59,7 +59,7 @@ void Player::Update()
 		nowStan = false;
 	}
 	if (CheckHitKey(KEY_INPUT_3)) {
-		ItemThrow();
+		//ItemThrow();
 	}
 	if (CheckHitKey(KEY_INPUT_4)) {
 		ItemScatter();
