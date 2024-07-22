@@ -19,7 +19,7 @@ private:
 	Player* player;
 	TerritoryManager* territory;
 	ItemManager* itemManager;
-	Item* item;
+	ItemManager* item;
 
 	enum class STATE {
 		STOP,
