@@ -9,6 +9,10 @@ Item::Item()
 	vector   = VGet(0, 0.3f, 0);
 	speed    = 5.0f;
 
+	startTime  = 0.0f;
+	endTime    = 0.0f;
+	startPower = 0.0f;
+
 	isHold   = false;
 	whoseNum = -1;
 
@@ -33,16 +37,16 @@ void Item::Create(int type, const VECTOR& pos)
 void Item::Update()
 {
 	/*if (CheckHitKey(KEY_INPUT_UP)) {
-		SetThrow(VGet(0, -0.1f, 0));
+		SetThrow(VGet(-10.0f, -10.0f, 0));
 	}
 	if (CheckHitKey(KEY_INPUT_DOWN)) {
-		SetThrow(VGet(0, 5.0f, 0));
+		SetThrow(VGet(0, 10.0f, 0));
 	}
 	if (CheckHitKey(KEY_INPUT_RIGHT)) {
 		SetThrow(VGet(10.0f, 0, 0));
 	}
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
-		SetThrow(VGet(-20.0f, 0, 0));
+		SetThrow(VGet(-10.0f, 0, 0));
 	}*/
 	Throw();
 }
@@ -50,7 +54,8 @@ void Item::Update()
 void Item::Draw()
 {
 	DrawRectGraph((int)position.x, (int)position.y, kind * 36 + 2, 2, 32, 32, hImage, TRUE);
-	DrawFormatString((int)position.x, (int)position.y, 0xff0000, "%.1f", speed);
+	//DrawFormatString((int)position.x, (int)position.y, 0xff0000, "%.1f", speed);
+	DrawFormatString((int)position.x, (int)position.y, 0xFFFFFF, "%s", isTerritory ?  "YES" : "NO");
 }
 
 const VECTOR Item::GetCenterPos()
@@ -58,43 +63,53 @@ const VECTOR Item::GetCenterPos()
 	return position + VGet((float)(ITEM_SIZE / 2), (float)(ITEM_SIZE / 2),0);
 }
 
-float startTime = 0;
-float endTime = 0;
-float startPower = 0;
-
-void Item::SetThrow(VECTOR _vec)
+void Item::SetThrow(const VECTOR& _vec)
 {
-	vector     = _vec;
-	startPower = VSize(vector);
+	vector     = VNorm(_vec);
+	startPower = 10.0f;
 	startTime  = 0;
-	endTime    = 5.0f;
+	endTime    = 3.0f;
 	isThrow    = true;
+}
+
+void Item::ThrowReset() {
+	speed     = 0.0f;
+	isThrow   = false;
+	havPlayer = nullptr;
 }
 
 void Item::Throw()
 {
+	if (!isThrow) {
+		return;
+	}
+
 	float rate = startTime / endTime;
 	startTime += 1.0f / 60.0f;
 
-	speed = (0 - startPower) * rate + startPower;
-	if (speed > 0) {
-		speed -= 0.1f;
-	}
-	else {
-		speed = 0;
-		isThrow = false;
+	if (rate > 1.0f) {
+		ThrowReset();
+		return;
 	}
 
-	if (position.x < WALL_SIZE || position.x + ITEM_SIZE > SCREEN_WIDTH - WALL_SIZE ||
-		position.y < WALL_SIZE || position.y + ITEM_SIZE > SCREEN_HEIGHT - WALL_SIZE) {
-		vector     = VGet(0, 0, 0) - vector;
-		startPower = VSize(vector) /10.0f;
-		startTime  = 0;
+	speed = -startPower * rate + startPower;
+	if (speed <= 0.0f) {
+		ThrowReset();
+		return;
+	}
+
+	if (position.x <= WALL_SIZE || position.x + ITEM_SIZE >= SCREEN_WIDTH  - WALL_SIZE ||
+		position.y <= WALL_SIZE || position.y + ITEM_SIZE >= SCREEN_HEIGHT - WALL_SIZE) {
+		vector     = VNorm(vector * -1);
+		startPower = 0.0f;
+		startTime  = 0.0f;
 		endTime    = 1.0f;
+		speed      = 10.0f;
 	}
 
-	position.x += cosf(atan2f(vector.y, vector.x)) * speed;
-	position.y += sinf(atan2f(vector.y, vector.x)) * speed;
+	float r = atan2f(vector.y, vector.x);
+	position.x += cosf(r) * speed;
+	position.y += sinf(r) * speed;
 }
 
 void Item::SetRandomPosition()
