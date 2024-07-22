@@ -10,7 +10,7 @@ namespace {
 }
 
 PlayTime::PlayTime(){
-	time = 10;
+	time = 30;
 	timeFrame = 0;
 	imageNumber = LoadGraph("data\\textures\\num07.png");
 	assert(imageNumber >= 0);

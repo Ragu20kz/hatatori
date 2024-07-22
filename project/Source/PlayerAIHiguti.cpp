@@ -102,7 +102,7 @@ void PlayerAIHiguti::Catch()
 			state = STATE::GOAL;
 		}
 		else {
-			state = STATE::SEARCH;
+			state = STATE::GOAL;
 		}
 		
 	}
@@ -143,8 +143,8 @@ void PlayerAIHiguti::Goal()
 
 void PlayerAIHiguti::Attack()
 {
-	//player->ItemThrow(target);
-	target = VECTOR();
+	player->ItemThrow(target);
+	//target = VECTOR();
 	state = STATE::SEARCH;
 }
 

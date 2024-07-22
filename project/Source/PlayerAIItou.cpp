@@ -6,6 +6,7 @@ PlayerAIItou::PlayerAIItou()
 	player = nullptr;
 	itemM = FindGameObject<ItemManager>();
 	move = VGet(-1, 0, 0);
+	itemDist = 0;
 }
 
 PlayerAIItou::~PlayerAIItou()
@@ -23,9 +24,10 @@ void PlayerAIItou::Update()
 	player->Input(move);
 	if (player->Position().x > player->TerritoryPos().x
 		&& player->Position().y > player->TerritoryPos().y) {
-		player->ItemPut();
+		player->RandItemPut();
 
 	}
+	
 }
 
 void PlayerAIItou::SearchNearItem()
@@ -48,5 +50,19 @@ void PlayerAIItou::SearchNearItem()
 			nearPos = item->Position();
 		}
 	}
+	itemDist = VSize(nearPos - player->Position());
 	move = VNorm(nearPos - player->Position());
+}
+
+void PlayerAIItou::BackHome()
+{
+	if(itemDist<40){
+		return;
+	}
+	if (player->GetWeight() < 2) {
+		return;
+	}
+
+	move = VNorm(player->TerritoryPos() - player->Position());
+
 }

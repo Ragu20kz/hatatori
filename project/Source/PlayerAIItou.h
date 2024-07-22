@@ -12,9 +12,12 @@ public:
 	void Update();
 private:
 	void SearchNearItem();
+	void BackHome();
 
 	Player* player;
 	ItemManager* itemM;
 
 	VECTOR move;
+
+	float itemDist;
 };

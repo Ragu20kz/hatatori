@@ -4,6 +4,12 @@
 #include "Player.h"
 #include "Score.h"
 
+#include"territory.h"
+
+namespace {
+	std::list<int> nowScore;
+}
+
 ResultScene::ResultScene()
 {
 	playerList.clear();
@@ -17,9 +23,12 @@ ResultScene::ResultScene()
 
 	Score* score = Score::GetInstance();
 	auto list    = score->GetList();
+	int a = 0;
 	for (auto it = list.begin(); it != list.end(); it++) {
 		const SCORE_INFO& s = (*it);
 		playerList.emplace_back(inst[s.playerNun]);
+		nowScore.emplace_back(s.score);
+		a++;
 	}
 }
 
@@ -41,8 +50,14 @@ void ResultScene::Draw()
 	for (auto it = playerList.begin(); it != playerList.end(); it++) {
 		Player* p = (*it);
 		VECTOR pos = VGet(500.0f, (float)(200 + (70 * y)), 0);
-		DrawFormatString((int)pos.x, (int)pos.y, 0xFFFFFF, "%dˆÊ", y + 1);
-		p->SetPos(pos + VGet(50.0f, 0, 0));
+		p->SetPos(pos + VGet(-50.0f, 0, 0));
+		y++;
+	}
+	y = 0;
+	for (auto it : nowScore) {
+		VECTOR pos = VGet(500.0f, (float)(200 + (70 * y)), 0);
+		int a = it;
+		DrawFormatString((int)pos.x, (int)pos.y, 0xFFFFFF, "score:%d", a);
 		y++;
 	}
 

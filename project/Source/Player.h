@@ -6,7 +6,7 @@ class Item;
 class Territory;
 
 namespace {
-	static const int PLAYER_SIZE = 32;
+	static const int PLAYER_SIZE = 36;
 }
 
 class Player : public GameObject {
@@ -17,6 +17,7 @@ public:
 	void Draw() override;
 	void SetChara(int id);
 	void SetPos(const VECTOR& _pos) { position = _pos; }
+	void SetWeight(int _set) { weight = _set; }
 
 	const VECTOR& Position()              { return position; }
 	const VECTOR GetCenterPos();
@@ -25,6 +26,9 @@ public:
 	bool IsStun()                         { return nowStun; }
 	const std::list<Item*>& GetItemList() { return itemList; }
 	const int& GetType()                  { return type; }
+	const int GetWeight()				  { return weight; }
+
+	const int GetScore();
 
 	void Input(VECTOR dir);
 
@@ -70,6 +74,9 @@ private:
 	VECTOR input;
 	int score;
 	int type;
+
+	int ilustTimer;
+	int ilustSrc;
 
 	float speedBuff;	//スピード倍率、デフォルトは1.0f
 	int weightMax;		//重さ上限、これ以上増えると遅くなるよ
