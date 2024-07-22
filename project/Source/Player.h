@@ -6,7 +6,7 @@ class Item;
 class Territory;
 
 namespace {
-	static const int PLAYER_SIZE = 32;
+	static const int PLAYER_SIZE = 36;
 }
 
 class Player : public GameObject {
@@ -70,6 +70,9 @@ private:
 	VECTOR input;
 	int score;
 	int type;
+
+	int ilustTimer;
+	int ilustSrc;
 
 	float speedBuff;	//スピード倍率、デフォルトは1.0f
 	int weightMax;		//重さ上限、これ以上増えると遅くなるよ
