@@ -13,6 +13,7 @@ namespace {
 ResultScene::ResultScene()
 {
 	playerList.clear();
+	nowScore.clear();
 
 	Player* inst[PLAYER_NUM];
 	for (int i = 0; i < PLAYER_NUM; i++) {
