@@ -3,7 +3,7 @@
 #include "Player.h"
 
 class ItemManager;
-const Item;
+class Item;
 
 enum class PLAYER_INFO {
 	DEFAULT = 0,    //�ʏ펞
@@ -20,20 +20,26 @@ public:
 	void SetPlayer(Player* inst);
 	void Start() override;
 	void Update() override;
+	void Draw() override;
 private:
 	Player* player;
 	ItemManager* item;
 	Item* targetItem;
+	Player* targetPlayer;
 
 	PLAYER_INFO info;
 
 	VECTOR nextPos;
+
+	float attackCoolTime;
 
 	void DefaultUpdate();
 	void Filde_ItemUpdate();
 	void Territoty_ItemUpdate();
 	void BackUpdate();
 	void ThrowUpdate();
+
+	void HeightScorePlayer();
 
 	void Navigation();
 

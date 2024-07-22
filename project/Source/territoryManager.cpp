@@ -72,12 +72,16 @@ void TerritoryManager::ItemCollider()
 	}
 
 	for (auto it : item->GetItemList()) {
+		if (it->IsHold() || it->IsThrow()) {
+			continue;
+		}
+
 		for (int i = 0; i < territory.size(); i++) {
 			VECTOR boxPos  = territory[i]->positon;
 			VECTOR itemPos = it->Position();
 			if (itemPos.x < boxPos.x + TERRITORY_SIZE_X && itemPos.x + ITEM_SIZE > boxPos.x &&
 				itemPos.y < boxPos.y + TERRITORY_SIZE_Y && itemPos.y + ITEM_SIZE > boxPos.y) {
-				territory[i]->score    += 100 * it->GetKind();
+				territory[i]->score += 100 * it->GetKind();
 				territory[i]->AddItemList(it);
 				it->SetTerritory(true);
 				break;
@@ -90,14 +94,14 @@ void TerritoryManager::ItemCollider()
 
 void TerritoryManager::DebugGUI()
 {
-	ImGui::Begin("BOX");
+	/*ImGui::Begin("BOX");
 	for (int i = 0; i < territory.size(); i++) {
 		std::string num = std::to_string(i) + ":x";
 		ImGui::SliderFloat(num.c_str(), &territory[i]->positon.x, 0, 1280);
 		num = std::to_string(i) + ":y";
 		ImGui::SliderFloat(num.c_str(), &territory[i]->positon.y, 0, 720);
 	}
-	ImGui::End();
+	ImGui::End();*/
 }
 
 int const TerritoryManager::GetScore(int _num)

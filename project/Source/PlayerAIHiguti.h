@@ -24,13 +24,12 @@ private:
 
 	VECTOR target;
 	VECTOR move;
-	bool allGet;
+	bool notItem;
 
 	void Search();
 	void Catch();
 	void Attack();
 	void Goal();
-
 	void Walk();
 
 	bool IsItem(VECTOR _pos); //アイテムが自分の陣地に乗ってるか

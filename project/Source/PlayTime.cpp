@@ -10,7 +10,7 @@ namespace {
 }
 
 PlayTime::PlayTime(){
-	time = 60;
+	time = 10;
 	timeFrame = 0;
 	imageNumber = LoadGraph("data\\textures\\num07.png");
 	assert(imageNumber >= 0);
@@ -56,5 +56,10 @@ void PlayTime::Draw(){
 bool PlayTime::SetActiveTime(bool active){
 	activeTime = active;
 	return false;
+}
+
+bool PlayTime::IsTimeUp()
+{
+	return (time == 0);
 }
 
